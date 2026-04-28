@@ -1,3 +1,8 @@
+body{
+  margin: 0px;
+
+}
+
 .container {
   position: relative;
   width: 100%;
@@ -22,14 +27,48 @@
 
 .header{
   display: flex;
-  background-color: white;
-  min-height: 70px;
-  height: 5%;
+  background-color: rgba(27, 27, 27, 0.406);
+  min-height: 130px;
+  height: 10%;
   width: 100%;
-  opacity: 0.5;
 }
 
-.content1{
+.meubtn{
+  text-decoration: none;
+  display: inline-block;
+  background: white;
+  padding: 15px 33px;
+  border-radius: 20px;
+}
+
+.leftHeader{
   display: flex;
+  width: 70%;
+  padding: 30px;
+}
+
+.leftHeader h2{
+  color: white;
+  size: 32px;
+}
+
+.leftHeader img{
+  width: 100px;
+  height: 100px;
+}
+
+.rightHeader{
+ width: 30%;
+ display: flex;
+ padding-right: 30px;
+ align-items: center;
+ justify-content: space-around;
+}
+
+.content{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background-color: rgba(27, 27, 27, 0.406);
 
 }
