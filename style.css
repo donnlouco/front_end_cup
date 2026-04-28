@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bg-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: -10; /* fica atrás */
+  pointer-events: none; /* impede que capture cliques */
+}
+
+.content {
+  position: relative;
+}
+
+.header{
+  display: flex;
+  background-color: white;
+  min-height: 70px;
+  height: 5%;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.content1{
+  display: flex;
+
+}
