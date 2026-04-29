@@ -17,15 +17,14 @@ body{
   width: 100%;
   height: 100%;
   border: none;
-  z-index: -10; /* fica atrás */
-  pointer-events: none; /* impede que capture cliques */
+  z-index: -100; 
+  pointer-events: none;
 }
 
 
 
 .header{
   display: flex;
-  background-color: rgba(27, 27, 27, 0.222);
   min-height: 110px;
   height: 10%;
   width: 100%;
@@ -73,7 +72,6 @@ body{
 .main{
   height: 100vh;
   width: 100%;
-  background-color: rgba(27, 27, 27, 0.222);
 }
 
 .content{
@@ -96,13 +94,13 @@ body{
 }
 
 .subContent h1{
-  color: aliceblue;
+  color: white;
   font-size: 72px;
 
 }
 
 .content h2{
-  color: aliceblue;
+  color: white;
   font-size: 215px;
 }
 
