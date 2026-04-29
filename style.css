@@ -78,8 +78,7 @@ body{
 
 .content{
   display: flex;
-  align-items: center;
-  position: relative;
+  padding-top: 30px;
   margin-left: 7%;
   height: 50%;
   width: 100%;
@@ -90,9 +89,10 @@ body{
   display: flex;
   height: 250px;
   align-items: center;
-  background: rgba(27, 27, 27, 0.753);
+  background: rgba(27, 27, 27, 0.61);
   padding: 10px 10px;
   border-radius: 20px;
+  backdrop-filter: blur(10px)
 }
 
 .subContent h1{
@@ -110,4 +110,45 @@ body{
 .contentTime{
   height: 50%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.countdownContainer {
+  background: rgba(27, 27, 27, 0.61); 
+  padding: 10px;
+  width: 40%;
+  height: 45%;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  backdrop-filter: blur(10px); 
+  font-family: "Roboto Slab", serif;
+}
+
+.timer {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 100px;
+}
+
+.box span {
+  display: block;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.box p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
