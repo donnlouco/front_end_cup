@@ -1,5 +1,5 @@
 // Defina a data do evento aqui
-const eventDate = new Date("Oct 29, 2026 00:00:00").getTime();
+const eventDate = new Date("Jun 15, 2026 00:00:00").getTime();
 
 const updateCountdown = setInterval(function() {
   const now = new Date().getTime();
