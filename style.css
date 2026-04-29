@@ -21,14 +21,12 @@ body{
   pointer-events: none; /* impede que capture cliques */
 }
 
-.content {
-  position: relative;
-}
+
 
 .header{
   display: flex;
-  background-color: rgba(27, 27, 27, 0.406);
-  min-height: 130px;
+  background-color: rgba(27, 27, 27, 0.222);
+  min-height: 110px;
   height: 10%;
   width: 100%;
 }
@@ -39,20 +37,27 @@ body{
   background: white;
   padding: 15px 33px;
   border-radius: 20px;
+  font-family: "Roboto Slab", serif;
+}
+
+.leftHeaderLogo{
+  width: 15%;
+  padding: 8px;
 }
 
 .leftHeader{
   display: flex;
-  width: 70%;
-  padding: 30px;
+  width: 60%;
+  padding: 15px;
+  align-items: center;
 }
 
 .leftHeader h2{
   color: white;
-  size: 32px;
+  font-size: 38px;
 }
 
-.leftHeader img{
+.leftHeaderLogo img{
   width: 100px;
   height: 100px;
 }
@@ -62,13 +67,47 @@ body{
  display: flex;
  padding-right: 30px;
  align-items: center;
- justify-content: space-around;
+ justify-content: space-evenly;
+}
+
+.main{
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(27, 27, 27, 0.222);
 }
 
 .content{
-  height: 100vh;
-  width: 100%;
   display: flex;
-  background-color: rgba(27, 27, 27, 0.406);
+  align-items: center;
+  position: relative;
+  margin-left: 7%;
+  height: 50%;
+  width: 100%;
+  display: flex; 
+  font-family: "Roboto Slab", serif;
+}
+.subContent{
+  display: flex;
+  height: 250px;
+  align-items: center;
+  background: rgba(27, 27, 27, 0.753);
+  padding: 10px 10px;
+  border-radius: 20px;
+}
 
+.subContent h1{
+  color: aliceblue;
+  font-size: 72px;
+
+}
+
+.content h2{
+  color: aliceblue;
+  font-size: 215px;
+}
+
+
+.contentTime{
+  height: 50%;
+  width: 100%;
 }
