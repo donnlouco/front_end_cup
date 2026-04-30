@@ -47,6 +47,12 @@ body{
   font-family: "Roboto Slab", serif;
 }
 
+.meubtn:hover{
+  border-left: 2px solid rgba(255, 215, 0, 0.8);
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
+
 .leftHeaderLogo{
   width: 15%;
   padding: 8px;
@@ -270,6 +276,7 @@ body{
   border-left: 2px solid rgba(255, 215, 0, 0.8);
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
 }
 
 .timelineContent h3 {
