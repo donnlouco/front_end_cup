@@ -23,3 +23,16 @@ const updateCountdown = setInterval(function() {
     document.querySelector(".timer").innerHTML = "<h3>O evento começou!</h3>";
   }
 }, 1000);
+
+
+
+window.addEventListener("scroll", () => {
+    const header = document.querySelector(".header");
+
+    if (window.scrollY > 30) {
+        header.classList.add("scrolled");
+    }
+    else{
+        header.classList.remove("scrolled");
+    }
+})
