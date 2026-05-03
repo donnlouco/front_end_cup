@@ -418,8 +418,8 @@ body{
   justify-content: center;
 }
 
-.carouselTitle h2{
-  color: white;
+#carouselTitle{
+  color: black;
   text-align: center;
   font-family: 'Kanit', sans-serif; font-weight: 900;
   font-size: 32px;
@@ -470,13 +470,14 @@ body{
   gap: 10px;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .indicatorsCarousel span{
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: grey;
+  background-color: rgba(128, 128, 128, 0.438);
   cursor: pointer;
 }
