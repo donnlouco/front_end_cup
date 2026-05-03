@@ -407,3 +407,76 @@ body{
     animation: none; 
   }
 }
+
+.carouselContainer{
+  width: 100%;
+  min-height: 200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselTitle h2{
+  color: white;
+  text-align: center;
+  font-family: 'Kanit', sans-serif; font-weight: 900;
+  font-size: 32px;
+}
+
+.carouselMain{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  gap: 15px;
+}
+
+.prevBtnCarousel, .nextBtnCarousel {
+  flex-shrink: 0;     
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #fbbf24;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.carouselTrack{
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  scroll-behavior: smooth;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+
+.cardCarousel{
+  /* Calcula: 3 itens por vez, descontando o gap */
+  flex: 0 0 calc(33.333% - 10px); 
+  width: 32.2%;
+  object-fit: cover;    /* Faz a imagem preencher o espaço sem distorcer */
+  border-radius: 15px;
+  display: block;
+}
+
+.indicatorsCarousel{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.indicatorsCarousel span{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: grey;
+  cursor: pointer;
+}
