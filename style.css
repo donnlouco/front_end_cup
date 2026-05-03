@@ -446,6 +446,15 @@ body{
   font-weight: bold;
 }
 
+.prevBtnCarousel:hover, .nextBtnCarousel:hover{
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.prevBtnCarousel:active, .nextBtnCarousel:active{
+  background-color: #fbbe24c4;
+}
+
 .carouselTrack{
   display: flex;
   gap: 15px;
@@ -465,6 +474,7 @@ body{
   display: block;
 }
 
+
 .indicatorsCarousel{
   display: flex;
   gap: 10px;
@@ -480,4 +490,8 @@ body{
   border-radius: 50%;
   background-color: rgba(128, 128, 128, 0.438);
   cursor: pointer;
+}
+
+.nextBtnCarousel i{
+
 }
