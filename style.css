@@ -472,6 +472,20 @@ body{
   display: block;
 }
 
+@media(max-width: 1400px){
+  .cardCarousel{
+    flex: 0 0 calc(50% - 10px); 
+    width: 48.7%
+  }
+}
+
+@media(max-width: 900px){
+  .cardCarousel{
+    flex: 0 0 calc(100% - 10px); 
+    width: 99%
+  }
+}
+
 
 .indicatorsCarousel{
   display: flex;
