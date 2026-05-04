@@ -119,5 +119,27 @@ dots.forEach((dot, index) => {
 nextBtn.addEventListener('click', moveNext);
 prevBtn.addEventListener('click', movePrev);
 
+// === Suporte a Toque (Swipe) para Mobile ===
+let startX = 0;
+let endX = 0;
+
+track.addEventListener('touchstart', (e) => {
+    startX = e.changedTouches[0].clientX;
+}, false);
+
+track.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    const threshold = 50; // Distância mínima para registrar o swipe
+    
+    // Swipe para a esquerda = próxima imagem
+    if (startX > endX + threshold) {
+        moveNext();
+    }
+    // Swipe para a direita = imagem anterior
+    if (startX < endX - threshold) {
+        movePrev();
+    }
+}, false);
+
 // Inicializa
 updateDots();
