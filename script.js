@@ -36,3 +36,88 @@ window.addEventListener("scroll", () => {
         header.classList.remove("scrolled");
     }
 })
+
+
+const track = document.querySelector('.carouselTrack');
+const cards = document.querySelectorAll('.cardCarousel');
+const prevBtn = document.querySelector('.prevBtnCarousel');
+const nextBtn = document.querySelector('.nextBtnCarousel');
+const dots = document.querySelectorAll('.indicatorsCarousel span');
+
+// Mantenha o índice atual
+let currentIndex = 0;
+const totalImages = cards.length;
+
+// Função principal para mover e atualizar
+function moveNext() {
+    // Move fisicamente a imagem
+    const firstCard = track.children[0];
+    track.appendChild(firstCard);
+
+    // Atualiza o índice lógico
+    currentIndex = (currentIndex + 1) % totalImages;
+    updateDots();
+}
+
+function movePrev() {
+    // Move fisicamente a imagem
+    const lastCard = track.children[track.children.length - 1];
+    track.prepend(lastCard);
+
+    // Atualiza o índice lógico
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    updateDots();
+}
+
+function updateDots() {
+    // O JS move as imagens na DOM, mas o index lógico se mantém.
+    // Usamos o currentIndex para destacar o pontinho certo.
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+    });
+}
+
+// === Adicionando a Suavização (Animação opcional ao JS) ===
+// Nota: O CSS já suaviza as imagens em si, mas a animação de "rolagem" 
+// é difícil de replicar no JS quando reposicionamos elementos fisicamente.
+// Para uma rolagem suave em loop, o layout de grid *sem* scroll é o ideal.
+// Vamos fazer os indicadores (dots) causarem uma animação de fade suave.
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        // Aplica fade-out
+        track.style.opacity = 0;
+        track.style.transform = 'scale(0.98)';
+        
+        setTimeout(() => {
+            // Enquanto invisível, reorganize as imagens na DOM
+            // até que a imagem correspondente ao 'index' seja a primeira visível.
+            
+            // Este é um algoritmo complexo de reorganização de DOM.
+            // Para simplicidade, vamos usar o movimento direto.
+            
+            // Ex: Se clicou no pontinho 3, temos que girar a DOM 
+            // 'n' vezes até que a imagem 3 seja a 1ª.
+            
+            let rotationNeeded = (index - currentIndex + totalImages) % totalImages;
+            for(let i = 0; i < rotationNeeded; i++) {
+                const firstCard = track.children[0];
+                track.appendChild(firstCard);
+            }
+            
+            currentIndex = index;
+            updateDots();
+            
+            // Aplica fade-in
+            track.style.opacity = 1;
+            track.style.transform = 'scale(1)';
+        }, 200); // tempo que o elemento fica invisível
+    });
+});
+
+// === Eventos ===
+nextBtn.addEventListener('click', moveNext);
+prevBtn.addEventListener('click', movePrev);
+
+// Inicializa
+updateDots();

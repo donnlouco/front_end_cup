@@ -464,14 +464,13 @@ body{
   flex-grow: 1;
 }
 
-
 .cardCarousel{
-  /* Calcula: 3 itens por vez, descontando o gap */
   flex: 0 0 calc(33.333% - 10px); 
   width: 32.2%;
-  object-fit: cover;    /* Faz a imagem preencher o espaço sem distorcer */
+  object-fit: cover;    
   border-radius: 15px;
   display: block;
+  transition: 2s;
 }
 
 
@@ -492,6 +491,8 @@ body{
   cursor: pointer;
 }
 
-.nextBtnCarousel i{
-
+.indicatorsCarousel span.active {
+    background-color: #fbbf24; /* Mesma cor dos botões */
+    transform: scale(1.2);
+    transition: all 0.3s ease;
 }
