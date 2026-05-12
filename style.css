@@ -16,6 +16,14 @@ body{
   backface-visibility: hidden;
 }
 
+@font-face {
+  font-family: 'Snap ITC';
+  src: url('fonts/snap-itc.woff2') format('woff2'),
+       url('fonts/snap-itc.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .container {
   width: 100%;
   height: 100vh;
@@ -31,11 +39,12 @@ body{
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   border: none;
   z-index: -1;
   pointer-events: none;
   will-change: transform;
+  transform: translateY(-80px);
   backface-visibility: hidden;
   contain: layout style paint;
 }
@@ -108,79 +117,126 @@ body{
 
 .main{
   width: 100%;
-  height: 100%;
+  height: 80vh;
   position: relative;
   z-index: 10;
 }
 
 .content{
   display: flex;
-  padding-top: 50px;
-  justify-content: center;
+  align-items: end;
   height: 50%;
   width: 100%;
-  display: flex; 
-  font-family: 'Kanit', sans-serif; font-weight: 900;
 }
 .subContent{
   display: flex;
   height: 250px;
+  width: 100%;
   align-items: center;
+  justify-content: center;
   background: rgba(27, 27, 27, 0.61);
-  padding: 15px 15px;
-  border-radius: 20px;
+  padding: 15px 28px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
 }
 
 .subContent h1{
   color: white;
-  font-size: 72px;
-
+  font-size: 82px;
+  font-weight: 900;
+  line-height: 1.08;
+  margin: 0;
+  text-transform: uppercase;
+  transform: scaleX(1.14);
+  transform-origin: center center;
+  text-shadow:
+    0 0 42px rgba(56, 189, 248, 0.22),
+    0 4px 28px rgba(0, 0, 0, 0.5);
 }
-
-.content h2{
-  color: white;
-  font-size: 215px;
-}
-
 
 .contentTime{
   height: 50%;
   width: 100%;
   display: flex;
   padding-left: 5%;
-  padding-top: 50px;
 }
+
 
 .countdownContainer {
   background: rgba(27, 27, 27, 0.61); 
-  padding: 0px;
-  min-width: 400px;
-  min-height: 200px;
-  width: 20%;
-  height: 40%;
+  padding: 16px 18px 20px;
+  width: auto;
+  min-width: 150px;
+  max-width: 220px;
+  height: auto;
   border-radius: 20px;
   text-align: center;
   color: white;
   font-family: "Roboto Slab", serif;
 }
 
+.countdownContainer h2 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+
 .timer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
-  margin-top: 5px;
-  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .box {
   background: rgba(255, 255, 255, 0.15);
-  padding: 10px;
+  padding: 5px 7px;
   border-radius: 12px;
-  min-width: 50px;
+  min-width: 0;
+  width: 70%;
 }
 
+
+@media(max-width: 600px){
+  .subContent h1{
+    font-size: 52px;
+  }
+
+  .contentTime{
+    padding-left: 5px;
+  }
+
+  .countdownContainer{
+    max-width: 100px;
+    padding: 0px 0px 10px 0px;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    max-height: 350px;
+  }
+  .countdownContainer h2{
+    font-size: 16px;
+  }
+
+  .box{
+    width: 50%;
+    padding: 2px 4px;
+  }
+  .box span {
+    font-size: 20px;
+  }
+  .box p {
+    font-size: 13px;
+  }
+}
 .box span {
   display: block;
-  font-size: 3rem;
+  font-size: 27px;
   font-weight: bold;
 }
 
@@ -484,6 +540,10 @@ body{
     flex: 0 0 calc(100% - 10px); 
     width: 99%
   }
+  .prevBtnCarousel, .nextBtnCarousel{
+    height: 35px;
+    width: 35px;
+  }
 }
 
 
@@ -505,7 +565,104 @@ body{
 }
 
 .indicatorsCarousel span.active {
-    background-color: #fbbf24; /* Mesma cor dos botões */
-    transform: scale(1.2);
-    transition: all 0.3s ease;
+  background-color: #fbbf24; /* Mesma cor dos botões */
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+@media(max-width: 680px){
+.carouselContainer{
+  padding: 10px;
+}
+
+  .carouselMain{
+    width: 100%;
+    gap: 5px;
+  }
+
+  #carouselTitle{
+    font-size: 25px;
+  }
+
+  .indicatorsCarousel span{
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.historyMain {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 56px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)),
+    url(https://i.imgur.com/EJjaeSb.png);
+  background-size: cover;
+  background-position: center;
+  border-top: solid 2px rgba(255, 255, 255, 0.15);
+}
+
+.historySection {
+  width: 100%;
+  max-width: 80%;
+}
+
+.historyTitle {
+  margin: 0 0 28px;
+  color: white;
+  text-align: center;
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.historyTitle i {
+  margin-right: 10px;
+  color: #fbbf24;
+}
+
+.historyContent {
+  background: rgba(27, 27, 27, 0.75);
+  border-radius: 20px;
+  padding: 28px 32px;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Roboto Slab", serif;
+  font-size: 17px;
+  line-height: 1.65;
+  border-left: 3px solid rgba(251, 191, 36, 0.85);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.historyContent p {
+  margin: 0 0 1em;
+}
+
+.historyContent p:last-child {
+  margin-bottom: 0;
+}
+
+.historyLead {
+  font-size: 1.05em;
+  color: #fff;
+}
+
+.historyContent strong {
+  color: #fbbf24;
+}
+
+@media (max-width: 600px) {
+  .historyMain {
+    padding: 36px 16px 44px;
+  }
+
+  .historyTitle {
+    font-size: 22px;
+  }
+
+  .historyContent {
+    padding: 22px 20px;
+    font-size: 16px;
+  }
 }

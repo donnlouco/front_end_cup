@@ -29,7 +29,7 @@ const updateCountdown = setInterval(function() {
 window.addEventListener("scroll", () => {
     const header = document.querySelector(".header");
 
-    if (window.scrollY > 30) {
+    if (window.scrollY > 650) {
         header.classList.add("scrolled");
     }
     else{
