@@ -464,6 +464,366 @@ body{
   }
 }
 
+/* --- Sedes e ferramentas --- */
+.sedesMain,
+.ferramentasMain {
+  width: 100%;
+  padding: 44px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0f172a;
+  border-top: solid 2px rgba(255, 255, 255, 0.12);
+}
+
+.sedesSection,
+.ferramentasSection {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.infoSectionTitle {
+  margin: 0 0 12px;
+  color: #fff;
+  text-align: center;
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.infoSectionTitle i {
+  margin-right: 10px;
+  color: #fbbf24;
+}
+
+.infoSectionLead {
+  margin: 0 auto 28px;
+  max-width: 720px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Roboto Slab", serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.sedesBannerWrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 52px;
+}
+
+.sedesBannerWrap.is-expanded {
+  padding-bottom: 52px;
+}
+
+.sedesBannerRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  width: 100%;
+}
+
+.sedesBannerRow:not(.is-expanded) .sedeBanner:nth-child(n + 4) {
+  display: none;
+}
+
+.sedesVerMaisBtn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 10px 22px;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  border-radius: 999px;
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  font-family: "Roboto Slab", serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sedesVerMaisBtn:hover {
+  background: rgba(251, 191, 36, 0.28);
+  border-color: #fbbf24;
+  transform: translateY(-1px);
+}
+
+.sedesVerMaisBtn:focus-visible {
+  outline: 2px solid #fbbf24;
+  outline-offset: 3px;
+}
+
+.sedesVerMaisBtn[hidden] {
+  display: none;
+}
+
+.sedeBanner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  min-height: 88px;
+  margin: 0;
+  border-radius: 14px;
+  overflow: visible;
+  background: rgba(27, 27, 27, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-family: "Roboto Slab", serif;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.sedeBanner:hover {
+  transform: translateX(4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.sedeBannerBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.sedeBannerName {
+  margin: 0 0 4px;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.sedeBannerMeta {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sedeBannerMeta i {
+  margin-right: 6px;
+  color: #fbbf24;
+  font-size: 0.9em;
+}
+
+.sedeBannerDesc {
+  margin: 0;
+  font-size: clamp(12px, 1.2vw, 14px);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.58);
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.sedeBannerTeamsCounter {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(251, 191, 36, 0.3);
+  font-size: 14px;
+  color: #fbbf24;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sedeBannerTeamsCounter:before {
+  content: '📋';
+  font-size: 16px;
+}
+
+.sedeBannerTeams {
+  display: none;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  padding: 16px 12px 0 12px;
+  border-top: 1px solid rgba(251, 191, 36, 0.2);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sedeBannerTeams.active {
+  display: flex;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team {
+  flex: 0 1 calc(33.33% - 9px);
+  min-width: 180px;
+  margin-bottom: 0;
+  padding: 10px 12px;
+  background: rgba(251, 191, 36, 0.08);
+  border-left: 3px solid #fbbf24;
+  border-radius: 6px;
+}
+
+.team:last-child {
+  margin-bottom: 0;
+}
+
+.team h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.team ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style: none;
+}
+
+.team li {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.team li:before {
+  content: '→ ';
+  color: #fbbf24;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.ferramentasSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.ferramentasBloc {
+  background: rgba(27, 27, 27, 0.75);
+  border-radius: 18px;
+  padding: 24px 26px;
+  border-left: 3px solid rgba(251, 191, 36, 0.9);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.ferramentasBlocTitle {
+  margin: 0 0 16px;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.ferramentasBlocTitle i {
+  margin-right: 8px;
+  color: #fcd34d;
+}
+
+.ferramentasList {
+  margin: 0;
+  padding-left: 1.2em;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Roboto Slab", serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.ferramentasList li {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .sedesMain,
+  .ferramentasMain {
+    padding: 32px 16px 36px;
+  }
+
+  .infoSectionTitle {
+    font-size: 22px;
+  }
+
+  .infoSectionLead {
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
+
+  .sedesBannerRow {
+    gap: 10px;
+  }
+
+  .sedeBanner {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .sedeBannerBody {
+    padding: 10px 12px 12px;
+  }
+
+  .sedeBanner:hover {
+    transform: translateY(-2px);
+  }
+
+  .sedesVerMaisBtn {
+    font-size: 13px;
+    padding: 8px 18px;
+  }
+
+  .sedeBannerTeamsCounter {
+    font-size: 13px;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .sedeBannerTeams {
+    max-height: 300px;
+  }
+
+  .team {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+  }
+
+  .team h4 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .team li {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .ferramentasSplit {
+    grid-template-columns: 1fr;
+  }
+}
+
 .carouselContainer{
   width: 100%;
   min-height: 200px;
@@ -518,6 +878,7 @@ body{
   scroll-behavior: smooth;
   overflow: hidden;
   flex-grow: 1;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .cardCarousel{
@@ -606,16 +967,19 @@ body{
 .historySection {
   width: 100%;
   max-width: 80%;
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
 .historyTitle {
-  margin: 0 0 28px;
+  margin: 0 0 clamp(18px, 4vw, 28px);
   color: white;
   text-align: center;
   font-family: "Kanit", sans-serif;
   font-weight: 900;
-  font-size: 28px;
-  letter-spacing: 0.5px;
+  font-size: clamp(1.05rem, 2.2vw + 0.65rem, 1.75rem);
+  line-height: 1.2;
+  overflow-wrap: break-word;
 }
 
 .historyTitle i {
@@ -633,6 +997,9 @@ body{
   line-height: 1.65;
   border-left: 3px solid rgba(251, 191, 36, 0.85);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
 }
 
 .historyContent p {
@@ -652,17 +1019,48 @@ body{
   color: #fbbf24;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .historyMain {
-    padding: 36px 16px 44px;
+    padding: 32px 14px 40px;
   }
 
   .historyTitle {
-    font-size: 22px;
+    letter-spacing: 0.02em;
   }
 
   .historyContent {
-    padding: 22px 20px;
-    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 600px) {
+  .historyMain {
+    padding: 28px 12px 36px;
+  }
+
+  .historyTitle {
+    font-size: clamp(1rem, 5.2vw + 0.35rem, 1.35rem);
+  }
+
+  .historyContent {
+    padding: 18px 14px;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+
+  .historyLead {
+    font-size: 1.02em;
+  }
+}
+
+@media (max-width: 380px) {
+  .historyMain {
+    padding: 24px 10px 32px;
+  }
+
+  .historyContent {
+    padding: 16px 12px;
+    font-size: 14px;
+    line-height: 1.65;
   }
 }

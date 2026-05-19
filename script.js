@@ -143,3 +143,54 @@ track.addEventListener('touchend', (e) => {
 
 // Inicializa
 updateDots();
+
+(function initSedesVerMais() {
+  const sedesRow = document.getElementById("sedesBannerRow");
+  const sedesWrap = document.querySelector(".sedesBannerWrap");
+  const verMaisBtn = document.getElementById("sedesVerMaisBtn");
+  const SEDES_VISIVEIS = 4;
+
+  if (!sedesRow || !verMaisBtn) return;
+
+  const banners = sedesRow.querySelectorAll(".sedeBanner");
+  if (banners.length <= SEDES_VISIVEIS) {
+    verMaisBtn.hidden = true;
+    return;
+  }
+
+  verMaisBtn.addEventListener("click", () => {
+    const expanded = sedesRow.classList.toggle("is-expanded");
+    sedesWrap?.classList.toggle("is-expanded", expanded);
+    verMaisBtn.setAttribute("aria-expanded", String(expanded));
+    verMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
+  });
+})();
+
+// Times: expandir/colapsar ao clicar no banner
+(function initTeamsToggle() {
+  const banners = document.querySelectorAll(".sedeBanner");
+  
+  banners.forEach(banner => {
+    const counter = banner.querySelector(".sedeBannerTeamsCounter");
+    const teamsContainer = banner.querySelector(".sedeBannerTeams");
+    const teamsCountSpan = banner.querySelector(".teamsCount");
+    
+    if (!counter || !teamsContainer) return;
+    
+    // Contar automaticamente os times
+    const teamCount = teamsContainer.querySelectorAll(".team").length;
+    if (teamsCountSpan) {
+      teamsCountSpan.textContent = `${teamCount} time${teamCount !== 1 ? 's' : ''}`;
+    }
+    
+    counter.addEventListener("click", (e) => {
+      e.stopPropagation();
+      teamsContainer.classList.toggle("active");
+    });
+    
+    // Também permitir clicar em qualquer lugar do banner
+    banner.addEventListener("click", () => {
+      teamsContainer.classList.toggle("active");
+    });
+  });
+})();
