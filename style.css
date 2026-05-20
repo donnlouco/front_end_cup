@@ -484,7 +484,6 @@ body{
   }
 }
 
-/* --- Sedes e ferramentas --- */
 .sedesMain,
 .ferramentasMain {
   width: 100%;
@@ -956,7 +955,7 @@ body{
 }
 
 .indicatorsCarousel span.active {
-  background-color: #fbbf24; /* Mesma cor dos botões */
+  background-color: #fbbf24;
   transform: scale(1.2);
   transition: all 0.3s ease;
 }
@@ -1098,7 +1097,7 @@ body{
   }
 }
 
-/* Media query para telas com altura pequena */
+
 @media (max-height: 800px) {
   .rightHeader{
   padding-right: 15px;
