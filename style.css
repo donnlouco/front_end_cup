@@ -1100,10 +1100,14 @@ body{
 
 /* Media query para telas com altura pequena */
 @media (max-height: 800px) {
-.leftHeaderLogo img{
-  width: 80px;
-  height: 80px;  
-}
+  .rightHeader{
+  padding-right: 15px;
+  }
+
+  .leftHeaderLogo img{
+    width: 80px;
+    height: 80px;  
+  }
 
   .meubtn{
     padding: 15px 22px;
