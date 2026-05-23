@@ -50,12 +50,19 @@ body{
 }
 
 
+.bg-video {
+  position: absolute; /* Tira o vídeo do fluxo normal */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz o vídeo cobrir todo o espaço sem distorcer a proporção */
+  z-index: -1; /* Joga o vídeo para a camada de trás */
+}
 
 .header{
   display: flex;
-  min-height: 110px;
-  min-height: 60px;
-  height: 10%;
+  height: 13%;
   width: 100%;
   position: relative;
   z-index: 50;
@@ -73,6 +80,7 @@ body{
 
 .meubtn{
   text-decoration: none;
+  color: black;
   display: inline-block;
   background: white;
   padding: 15px 22px;
@@ -91,15 +99,19 @@ body{
 }
 
 .leftHeaderLogo{
-  width: 15%;
+  display: flex;
+  align-items: center;
+  min-width: 10%;
   padding: 8px;
+  background: rgba(0, 0, 0, 0.89);
+  border-radius: 20px 0px 0px 20px;
 }
 
 .leftHeader{
   display: flex;
   width: 60%;
-  padding: 15px;
   align-items: center;
+  
 }
 
 .leftHeader h2{
@@ -118,11 +130,6 @@ body{
   height: 80px;  
 }
 
-  .meubtn{
-    padding: 15px 22px;
-    font-size: 15px;
-  }
-
   .header{
     min-height: 60px;
   }
@@ -138,28 +145,30 @@ body{
 
 .main{
   width: 100%;
-  height: 80vh;
+  height: 83vh;
   position: relative;
   z-index: 10;
 }
 
 .content{
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   height: 50%;
   width: 100%;
 }
 .subContent{
   display: flex;
-  height: 250px;
+  height: 160px;
   width: 100%;
   align-items: center;
   justify-content: center;
-  background: rgba(27, 27, 27, 0.61);
+  background: rgba(0, 0, 0, 0.89);
   padding: 15px 28px;
   font-family: "Pixelify Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0.18em;
+  gap: 80px;
+  margin-bottom: 60px;
 }
 
 .subContent h1{
@@ -186,13 +195,13 @@ body{
 
 
 .countdownContainer {
-  background: rgba(27, 27, 27, 0.61); 
-  padding: 16px 18px 20px;
+  background: rgba(0, 0, 0, 0.89); 
+  padding: 15px 15px 15px;
   width: auto;
-  min-width: 150px;
-  max-width: 220px;
-  height: auto;
-  border-radius: 20px;
+  min-width: 300px;
+  max-width: 350px;
+  height: 100%;
+  border-radius: 0 20px 20px 0;
   text-align: center;
   color: white;
   font-family: "Roboto Slab", serif;
@@ -208,10 +217,8 @@ body{
 
 .timer {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin-top: 10px;
   width: 100%;
 }
 
@@ -224,7 +231,11 @@ body{
 }
 
 
-@media(max-width: 600px){
+@media(max-width: 650px){
+  .rightHeader{
+    padding-right: 15px;
+  }
+
   .subContent h1{
     font-size: 52px;
   }
@@ -234,26 +245,27 @@ body{
   }
 
   .countdownContainer{
-    max-width: 100px;
-    padding: 0px 0px 10px 0px;
     width: auto;
     min-width: 100px;
-    height: auto;
-    max-height: 350px;
-  }
+  } 
   .countdownContainer h2{
     font-size: 16px;
   }
 
   .box{
-    width: 50%;
-    padding: 2px 4px;
+    width: 60%;
+    padding: 3px 5px;
   }
   .box span {
     font-size: 20px;
   }
   .box p {
     font-size: 13px;
+  }
+
+  .meubtn{
+    padding: 12px 10px;
+    font-size: 15px;
   }
 }
 .box span {
@@ -275,6 +287,7 @@ body{
   flex-direction: column;
   align-items: center;
   background-size: cover;
+  border-top: solid 2px #fbbf24;
   background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),url(https://i.imgur.com/EJjaeSb.png);
   
@@ -282,8 +295,11 @@ body{
 
 .timelineSection {
   width: 100%;
+  max-width: 70%;
   padding: 20px;
-  border-top: solid 2px rgba(255, 255, 255, 0.911);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .timelineTitle{
@@ -296,7 +312,8 @@ body{
 .timeline{
   display: flex;
   position: relative;
-  max-width: 70%;
+  justify-content: space-around;
+  width: 100%;
   margin: 0 auto;
   padding: 20px 0;
 }
@@ -447,6 +464,17 @@ body{
 }
 
 
+@media(max-width: 1500px){
+  .timelineSection{
+    max-width: 80%;
+  }
+}
+@media(max-width: 1250px){
+  .timelineSection{
+    max-width: 90%;
+  }
+}
+
 @media (max-width: 1050px) {
   .timeline {
     flex-direction: column;
@@ -454,6 +482,13 @@ body{
     align-items: center;
   }
 
+  .subContent{
+    flex-direction: column;
+    gap: 0px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    height: 180px;
+  }
   .timeline::before {
     left: 45px;
     width: 2px;
@@ -770,7 +805,7 @@ body{
   padding-left: 1.2em;
   color: rgba(255, 255, 255, 0.88);
   font-family: "Roboto Slab", serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.7;
 }
 
@@ -962,25 +997,6 @@ body{
   transition: all 0.3s ease;
 }
 
-@media(max-width: 680px){
-.carouselContainer{
-  padding: 10px;
-}
-
-  .carouselMain{
-    width: 100%;
-    gap: 5px;
-  }
-
-  #carouselTitle{
-    font-size: 25px;
-  }
-
-  .indicatorsCarousel span{
-    width: 10px;
-    height: 10px;
-  }
-}
 
 .historyMain {
   width: 100%;
@@ -989,7 +1005,7 @@ body{
   align-items: center;
   padding: 48px 20px 56px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)),
-    url(https://i.imgur.com/EJjaeSb.png);
+  url(https://i.imgur.com/EJjaeSb.png);
   background-size: cover;
   background-position: center;
   border-top: solid 2px rgba(255, 255, 255, 0.15);
@@ -1035,19 +1051,52 @@ body{
 
 .historyContent p {
   margin: 0 0 1em;
+  font-size: 16px;
 }
 
 .historyContent p:last-child {
   margin-bottom: 0;
 }
 
-.historyLead {
-  font-size: 1.05em;
-  color: #fff;
-}
+@media(max-width: 680px){
+  .carouselContainer{
+    padding: 10px;
+  }
 
-.historyContent strong {
-  color: #fbbf24;
+  .carouselMain{
+    width: 90%;
+    gap: 5px;
+  }
+
+  #carouselTitle{
+    font-size: 25px;
+  }
+
+  .indicatorsCarousel span{
+    width: 10px;
+    height: 10px;
+  }
+
+  .historySection{
+    max-width: 90%;
+  }
+
+  .timeline{
+    max-width: 90%;
+  }
+
+  .sedesSection,
+  .ferramentasSection {
+    max-width: 90%;
+  }
+  .historyLead {
+    font-size: 1.05em;
+    color: #fff;
+  }
+
+  .historyContent strong {
+    color: #fbbf24;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1085,6 +1134,25 @@ body{
   .historyLead {
     font-size: 1.02em;
   }
+
+  .timelineTitle{
+    font-size: 20px;
+  }
+
+  .timelineContent h3{
+    font-size: 18px;
+  }
+
+  #timelineDate{
+    font-size: 16px;
+  }
+
+  #timelineDescription{
+    font-size: 16px;
+  }
+
+
+
 }
 
 @media (max-width: 380px) {
@@ -1102,7 +1170,12 @@ body{
 
 @media (max-height: 800px) {
   .rightHeader{
-  padding-right: 15px;
+  padding-right: 10px;
+  }
+
+  .meubtn{
+    padding: 12px 10px;
+    font-size: 13px;
   }
 
   .leftHeaderLogo img{
@@ -1110,17 +1183,8 @@ body{
     height: 80px;  
   }
 
-  .meubtn{
-    padding: 15px 22px;
-    font-size: 15px;
-  }
   .header{
     min-height: 80px;
-  }
-
-  .countdownContainer {
-    padding: 12px 10px 14px;
-    height: auto;
   }
 
   .countdownContainer h2 {
@@ -1130,23 +1194,22 @@ body{
 
   .timer {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   margin-top: 10px;
   width: 100%;
 }
 
   .box {
-    padding: 1px 3px;
+    padding: 5px 6px;
   }
 
   .box span {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .box p {
-    font-size: 10px;
+    font-size: 11px;
     margin: 2px 0 0;
   }
 
