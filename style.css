@@ -34,21 +34,6 @@ body{
   isolation: isolate
 }
 
-.bg-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  z-index: -1;
-  pointer-events: none;
-  will-change: transform;
-  transform: translateY(-80px);
-  backface-visibility: hidden;
-  contain: layout style paint;
-}
-
 
 .bg-video {
   position: absolute; /* Tira o vídeo do fluxo normal */
