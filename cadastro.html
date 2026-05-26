@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Campus - Front-End Team Cups</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="formContainer">
+        <div class="formWrapper">
+            <h1 class="formTitle"><i class="fa-solid fa-building-columns"></i> CADASTRO DE CAMPUS</h1>
+            <p class="formSubtitle">Preencha os dados abaixo para registrar seu campus na Front-End Team Cups</p>
+
+            <div id="successMessage" class="successMessage" style="display: none;">
+                ✓ Campus cadastrado com sucesso! Você receberá um email de confirmação.
+            </div>
+
+            <div id="errorMessage" class="errorMessage" style="display: none;">
+                ✗ Erro ao cadastrar. Verifique os dados e tente novamente.
+            </div>
+
+            <form id="cadastroForm" method="POST" action="https://formspree.io/f/seu_id">
+                <div class="formSection">
+                    <h3><i class="fa-solid fa-university"></i> Dados da Instituição</h3>
+
+                    <div class="formGroup">
+                        <label for="estado" class="requiredLabel">Estado</label>
+                        <select id="estado" name="estado" required>
+                            <option value="">Selecione um estado</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="cidade" class="requiredLabel">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Ex: São Paulo" required>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="instituicao" class="requiredLabel">Instituição/Escola</label>
+                        <input type="text" id="instituicao" name="instituicao" placeholder="Ex: Instituto Federal de Educação" required>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="endereco" class="requiredLabel">Endereço Completo</label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123 - Bairro - Complemento" required>
+                    </div>
+                </div>
+                <div class="formSection">
+                    <h3><i class="fa-solid fa-user-tie"></i> Dados do Responsável</h3>
+
+                    <div class="formGroup">
+                        <label for="responsavel_nome" class="requiredLabel">Nome Completo</label>
+                        <input type="text" id="responsavel_nome" name="responsavel_nome" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="responsavel_cpf" class="requiredLabel">CPF</label>
+                            <input type="text" id="responsavel_cpf" name="responsavel_cpf" placeholder="000.000.000-00" maxlength="14" required>
+                        </div>
+                        <div class="formGroup">
+                            <label for="responsavel_cargo" class="requiredLabel">Cargo</label>
+                            <select id="responsavel_cargo" name="responsavel_cargo" required>
+                                <option value="">Selecione um cargo</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Coordenador">Coordenador</option>
+                                <option value="Diretor">Diretor</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Supervisor">Supervisor</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="responsavel_email" class="requiredLabel">E-mail</label>
+                            <input type="email" id="responsavel_email" name="responsavel_email" placeholder="seu.email@exemplo.com" required>
+                        </div>
+                        <div class="formGroup">
+                            <label for="responsavel_telefone" class="requiredLabel">Telefone</label>
+                            <input type="tel" id="responsavel_telefone" name="responsavel_telefone" placeholder="(11) 99999-9999" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="formSection">
+
+                    <div class="formGroup" style="margin-top: 20px;">
+                        <label style="display: flex; align-items: center; gap: 10px; text-transform: none; font-weight: 500;">
+                            <input type="checkbox" id="termos" name="termos" required style="width: auto; padding: 0;">
+                            <span>Concordo com o <a href="regulamento.html" target="_blank" rel="noopener noreferrer"> regulamento</a> e com a política de privacidade da competição</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submitBtn">
+                    <i class="fa-solid fa-paper-plane"></i> ENVIAR CADASTRO
+                </button>
+            </form>
+
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 13px; margin-top: 20px;">
+                Dúvidas? Entre em contato: <a href="mailto:contato@frontendcup.com" style="color: #fbbf24; text-decoration: none;">contato@frontendcup.com</a>
+            </p>
+
+            <a href="index.html" class="backButton" style="display: inline-block; margin-top: 20px;">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Máscara para CPF
+        const cpfInput = document.getElementById('responsavel_cpf');
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 8) {
+                value = value.slice(0, 3) + '.' + value.slice(3, 6) + '.' + value.slice(6, 9) + '-' + value.slice(9);
+            } else if (value.length > 5) {
+                value = value.slice(0, 3) + '.' + value.slice(3, 6) + '.' + value.slice(6);
+            } else if (value.length > 2) {
+                value = value.slice(0, 3) + '.' + value.slice(3);
+            }
+            e.target.value = value;
+        });
+
+        // Máscara para Telefone
+        const telefoneInput = document.getElementById('responsavel_telefone');
+        telefoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 7) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2, 7) + '-' + value.slice(7);
+            } else if (value.length > 2) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+
+        // Validação do formulário
+        const form = document.getElementById('cadastroForm');
+        const successMsg = document.getElementById('successMessage');
+        const errorMsg = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', function(e) {
+            // Validar CPF
+            const cpf = cpfInput.value.replace(/\D/g, '');
+            if (cpf.length !== 11) {
+                e.preventDefault();
+                showError('CPF inválido. Digite um CPF válido.');
+                return;
+            }
+
+            // Validar Telefone
+            const telefone = telefoneInput.value.replace(/\D/g, '');
+            if (telefone.length < 10) {
+                e.preventDefault();
+                showError('Telefone inválido. Digite um telefone válido.');
+                return;
+            }
+
+            // Se tudo estiver correto, mostrar mensagem de sucesso
+            e.preventDefault();
+            showSuccess();
+            setTimeout(() => {
+                form.reset();
+                successMsg.style.display = 'none';
+            }, 3000);
+        });
+
+        function showSuccess() {
+            successMsg.style.display = 'block';
+            errorMsg.style.display = 'none';
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function showError(message) {
+            errorMsg.textContent = '✗ ' + message;
+            errorMsg.style.display = 'block';
+            successMsg.style.display = 'none';
+            errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
