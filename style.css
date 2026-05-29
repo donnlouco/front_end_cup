@@ -1480,7 +1480,7 @@ body{
   margin-right: 8px;
 }
 
-/* ========== FOOTER ========== */
+
 .footer {
   width: 100%;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
@@ -1572,9 +1572,15 @@ body{
   margin: 8px 0;
 }
 
+.footerBot{
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
 .footerBottom {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   padding-top: 24px;
@@ -1582,10 +1588,12 @@ body{
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
   background-color: #00420c;
+  padding-left: 50px;
+  padding-right: 50px;
   
 }
 
-.footerBottom a {
+.footerBot a {
   color: #fbbf24;
   text-decoration: none;
   transition: color 0.3s ease;
