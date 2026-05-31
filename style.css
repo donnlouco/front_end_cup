@@ -572,10 +572,11 @@ body{
 }
 
 .buscarSedes{
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 #campoBusca{
