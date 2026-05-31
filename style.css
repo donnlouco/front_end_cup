@@ -571,6 +571,30 @@ body{
   border-top: solid 2px #fbbf24;
 }
 
+.buscarSedes{
+  width: 70%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+#campoBusca{
+  width: 250px;
+  border: 1px solid rgba(154, 154, 154, 0.388);
+  border-radius: 25px;
+  padding-left: 35px;
+}
+
+.icone-lupa{
+  position: relative;
+  left: 27px;
+  pointer-events: none;
+  color: #fbbf24;
+}
+.esconder-card {
+  display: none !important;
+}
+
 .sedesSection,
 .ferramentasSection {
   width: 100%;
@@ -1904,6 +1928,10 @@ textarea {
   transform: translateX(-3px);
 }
 
+/* ========== BUSCAR SEDES ========== */
+.esconderCard {
+  display: none !important;
+}
 /* ========== RESPONSIVIDADE ========== */
 @media (max-width: 768px) {
   .organizadoresGrid {

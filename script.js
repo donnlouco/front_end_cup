@@ -118,6 +118,9 @@ if (track) {
 }
 
 
+
+
+
 // ========== SEDES - VER MAIS ==========
 (function initSedesVerMais() {
   const sedesRow = document.getElementById("sedesBannerRow");
@@ -157,13 +160,46 @@ if (track) {
       teamsCountSpan.textContent = `${teamCount} time${teamCount !== 1 ? 's' : ''}`;
     }
     
-    counter.addEventListener("click", (e) => {
-      e.stopPropagation();
+    const toggleTeams = (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Impede que o clique suba ou duplique
       teamsContainer.classList.toggle("active");
-    });
+    };
+
+    // Ouvindo o clique no contador de times
+    counter.addEventListener("click", toggleTeams);
     
-    banner.addEventListener("click", () => {
-      teamsContainer.classList.toggle("active");
+    // Se o usuário clicar no corpo do banner (mas não nos times em si)
+    banner.addEventListener("click", (e) => {
+      // Evita fechar o menu se o usuário clicar dentro da lista de times já aberta
+      if (!teamsContainer.contains(e.target) && e.target !== counter) {
+        toggleTeams(e);
+      }
     });
   });
 })();
+
+
+// ========== buscar ==========
+
+const sedes = document.querySelectorAll('.sedeBanner')
+const buscaCampo = document.getElementById("campoBusca")
+
+buscaCampo.addEventListener("input", () =>{
+    const termoBuscar = buscaCampo.value.toLowerCase().trim();
+
+    sedes.forEach((card) =>{
+        const nome = card.querySelector('.sedeBannerName')?.textContent.toLowerCase() || '';
+        const cidade = card.querySelector('.sedeBannerMeta')?.textContent.toLowerCase() || '';
+
+        if (nome.includes(termoBuscar) || cidade.includes(termoBuscar)){
+            card.classList.remove('esconderCard');
+        } else {
+            card.classList.add('esconderCard');
+            // IMPORTANTE: Se o card for escondido, fechamos os times dele 
+            // para que não fiquem abertos "fantasmas" se o usuário apagar a busca.
+            const teamsContainer = card.querySelector(".sedeBannerTeams");
+            teamsContainer?.classList.remove("active");
+        }
+    })
+})
