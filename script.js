@@ -57,7 +57,7 @@ function moveNext() {
         
         // 3. Volta a opacidade para exibir a nova imagem suavemente
         track.style.opacity = 1; 
-    }, 300);
+    }, 0);
 }
 
 function movePrev() {
