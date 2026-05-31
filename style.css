@@ -627,7 +627,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0f172a;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(11, 18, 32, 0.897) 100%);
   border-top: solid 2px rgba(255, 255, 255, 0.12);
 }
 
@@ -637,7 +637,10 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0f172a;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.884), rgba(0, 0, 0, 0.377)),
+  url(https://i.imgur.com/PFtv3Xg.png);
+  background-size: cover;
+  background-position: center;
   border-top: solid 2px #fbbf24;
 }
 
@@ -1059,7 +1062,7 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(15, 22, 37, 0.95)  0%, rgba(87, 87, 87, 0.938) 100%)
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(7, 11, 20, 0.95) 100%);
 }
 
 .carouselTitle{
@@ -1337,7 +1340,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0f172a;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
   border-top: solid 2px rgba(255, 255, 255, 0.12);
 }
 
@@ -1439,15 +1442,15 @@ body{
 
 
 .devCarouselTrack {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
   width: 100%;
-  flex-grow: 1;
-  transition: transform 0.3s ease;
+  margin-top: 20px;
 }
 
+
 .devCard {
-  flex: 0 0 calc(25% - 15px);
   background: rgba(27, 27, 27, 0.75);
   border-radius: 18px;
   overflow: hidden;
@@ -1461,7 +1464,7 @@ body{
 
 .devImage {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   display: block;
 }
@@ -1484,7 +1487,58 @@ body{
   letter-spacing: 0.5px;
 }
 
+@media(max-width:1350px){
+  .devCarouselTrack{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
 
+  .devImage{
+    height: 250px;
+  }
+
+  .devName{
+    font-size: 16px;
+  }
+
+  .devRole{
+    font-size: 12px;
+  }
+}
+@media(max-width:1150px){
+  .devCarouselTrack{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .devName{
+    font-size: 14px;
+  }
+
+  .devRole{
+    font-size: 11px;
+  }
+}
+
+@media(max-width:900px){
+  .devCarouselTrack{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media(max-width:680px){
+  .desenvolvedoresSection,
+  .organizadoresSection{
+    max-width: 90%;
+  }
+
+}
+@media(max-width:420px){
+  .devImage{
+    height: 200px;
+  }
+}
 
 .cadastroCTASection {
   width: 100%;
@@ -2005,14 +2059,6 @@ textarea {
   .organizadoresGrid {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  .devCarouselTrack {
-    gap: 15px;
-  }
-
-  .devCard {
-    flex: 0 0 calc(50% - 7.5px);
   }
 
   .footerContent {
