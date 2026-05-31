@@ -25,12 +25,17 @@ const updateCountdown = setInterval(function() {
 window.addEventListener("scroll", () => {
     const header = document.querySelector(".header");
     const leftheader = document.querySelector(".leftHeader");
+    const titulo = document.querySelector(".titulo-header-fixo")
     if (window.scrollY > 650) {
         header.classList.add("scrolled");
         leftheader.classList.add("scrolled");
+        titulo.classList.add("scrolled");
+
     } else {
         header.classList.remove("scrolled");
         leftheader.classList.remove("scrolled");
+        titulo.classList.remove("scrolled");
+
     }
 });
 
