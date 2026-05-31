@@ -2299,6 +2299,10 @@ textarea {
   width: 120px;
   height: auto;
 }
+
+  .footerBot p{
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 600px){
