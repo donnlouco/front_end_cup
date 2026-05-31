@@ -45,22 +45,27 @@ const track = document.querySelector('.carouselTrack');
 const cards = document.querySelectorAll('.cardCarousel');
 const prevBtn = document.querySelector('.prevBtnCarousel');
 const nextBtn = document.querySelector('.nextBtnCarousel');
-const dots = document.querySelectorAll('.indicatorsCarousel span');
+
+const currentSlideElement = document.getElementById("currentSlide");
+const totalSlidesElement = document.getElementById("totalSlides")
 
 let currentIndex = 0;
 const totalImages = cards.length;
 
+if (totalSlidesElement) {
+    totalSlidesElement.textContent = totalImages;
+}
+
 function moveNext() {
     track.style.opacity = 0; 
     
-    // 2. Espera os 300ms para trocar a imagem enquanto está invisível
     setTimeout(() => {
         const firstCard = track.children[0];
         track.appendChild(firstCard);
         currentIndex = (currentIndex + 1) % totalImages;
-        updateDots();
+
+        updateCounter();
         
-        // 3. Volta a opacidade para exibir a nova imagem suavemente
         track.style.opacity = 1; 
     }, 0);
 }
@@ -69,38 +74,21 @@ function movePrev() {
     const lastCard = track.children[track.children.length - 1];
     track.prepend(lastCard);
     currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-    updateDots();
+    updateCounter();
 }
 
-function updateDots() {
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-    });
+function updateCounter() {
+    if (currentSlideElement) {
+        currentSlideElement.textContent = currentIndex + 1;
+    }
 }
 
-updateDots();
+updateCounter();
 
 if (prevBtn) prevBtn.addEventListener('click', movePrev);
 if (nextBtn) nextBtn.addEventListener('click', moveNext);
 
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        track.style.opacity = 0;
-        
-        setTimeout(() => {
-            let rotationNeeded = (index - currentIndex + totalImages) % totalImages;
-            for(let i = 0; i < rotationNeeded; i++) {
-                const firstCard = track.children[0];
-                track.appendChild(firstCard);
-            }
-            currentIndex = index;
-            updateDots();
-            track.style.opacity = 1;
-        }, 300);
-    });
-});
 
-// Suporte a Toque (Swipe) para Mobile
 let startX = 0;
 let endX = 0;
 
