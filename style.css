@@ -637,7 +637,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.884), rgba(0, 0, 0, 0.377)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.637), rgba(0, 0, 0, 0.377)),
   url(https://i.imgur.com/PFtv3Xg.png);
   background-size: cover;
   background-position: center;
@@ -650,11 +650,12 @@ body{
   justify-content: end;
   align-items: center;
   padding-bottom: 20px;
+
 }
 
 #campoBusca{
   width: 250px;
-  border: 1px solid rgba(154, 154, 154, 0.388);
+  border: 1px solid rgba(154, 154, 154, 0.432);
   border-radius: 25px;
   padding-left: 35px;
 }
@@ -677,7 +678,7 @@ body{
 
 .infoSectionTitle {
   margin: 0 0 12px;
-  color: #fff;
+  color: white;
   text-align: center;
   font-family: "Kanit", sans-serif;
   font-weight: 900;
@@ -694,7 +695,7 @@ body{
   margin: 0 auto 28px;
   max-width: 720px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgb(255, 255, 255);
   font-family: "Roboto Slab", serif;
   font-size: 17px;
   line-height: 1.55;
