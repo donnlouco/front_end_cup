@@ -175,11 +175,11 @@
         const successMsg = document.getElementById('successMessage');
         const errorMsg = document.getElementById('errorMessage');
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault()
             // Validar CPF
             const cpf = cpfInput.value.replace(/\D/g, '');
             if (cpf.length !== 11) {
-                e.preventDefault();
                 showError('CPF inválido. Digite um CPF válido.');
                 return;
             }
@@ -187,18 +187,47 @@
             // Validar Telefone
             const telefone = telefoneInput.value.replace(/\D/g, '');
             if (telefone.length < 10) {
-                e.preventDefault();
                 showError('Telefone inválido. Digite um telefone válido.');
                 return;
             }
 
-            // Se tudo estiver correto, mostrar mensagem de sucesso
-            e.preventDefault();
-            showSuccess();
-            setTimeout(() => {
-                form.reset();
-                successMsg.style.display = 'none';
-            }, 3000);
+            const dadosParaEnviar = {
+                estado: document.getElementById('estado').value,
+                cidade: document.getElementById('cidade').value,
+                instituicao: document.getElementById('instituicao').value,
+                endereco: document.getElementById('endereco').value,
+                responsavel_nome: document.getElementById('responsavel_nome').value,
+                responsavel_cpf: document.getElementById('responsavel_cpf').value, // Aqui envia o CPF com a máscara
+                responsavel_cargo: document.getElementById('responsavel_cargo').value,
+                responsavel_email: document.getElementById('responsavel_email').value,
+                responsavel_telefone: document.getElementById('responsavel_telefone').value // Aqui envia o telefone com a máscara
+            };
+
+            try {
+                // Altere esta URL para a rota real do seu back-end em Python
+                const response = await fetch('http://localhost:8000/api/registrar-campus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dadosParaEnviar)
+                });
+
+                // Se o servidor Python responder que deu tudo certo (Status 200)
+                if (response.ok) {
+                    showSuccess();
+                    setTimeout(() => {
+                        form.reset();
+                        successMsg.style.display = 'none';
+                    }, 3000);
+                } else {
+                    // Se o servidor retornar algum erro (ex: 400 ou 500)
+                    showError('Erro no servidor ao tentar realizar o cadastro.');
+                }
+            } catch (error) {
+                console.error('Erro de requisição:', error);
+                showError('Falha na comunicação com o servidor.');
+            }
         });
 
         function showSuccess() {
