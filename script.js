@@ -114,8 +114,8 @@ if (track) {
 
 
 
-// ========== SEDES - VER MAIS ==========
-(function initSedesVerMais() {
+// ========== INICIALIZAR BOTÃO VER MAIS ==========
+function initSedesVerMais() {
   const sedesRow = document.getElementById("sedesBannerRow");
   const sedesWrap = document.querySelector(".sedesBannerWrap");
   const verMaisBtn = document.getElementById("sedesVerMaisBtn");
@@ -135,10 +135,10 @@ if (track) {
     verMaisBtn.setAttribute("aria-expanded", String(expanded));
     verMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
   });
-})();
+}
 
-// ========== TIMES - EXPANDIR/COLAPSAR ==========
-(function initTeamsToggle() {
+// ========== INICIALIZAR TOGGLES DE TIMES ==========
+function initTeamsToggle() {
   const banners = document.querySelectorAll(".sedeBanner");
   
   banners.forEach(banner => {
@@ -170,29 +170,135 @@ if (track) {
       }
     });
   });
-})();
+}
 
 
-// ========== buscar ==========
+// ========== CARREGAR SEDES E TIMES DA API ===========
+const API_URL = 'http://localhost:8000/api';
 
-const sedes = document.querySelectorAll('.sedeBanner')
-const buscaCampo = document.getElementById("campoBusca")
+async function carregarSedes() {
+    // 1. Valida se o container existe
+    const container = document.getElementById('sedesBannerRow');
+    if (!container) {
+        console.error('Container #sedesBannerRow não encontrado no HTML');
+        return;
+    }
 
-buscaCampo.addEventListener("input", () =>{
-    const termoBuscar = buscaCampo.value.toLowerCase().trim();
+    try {
+        // 2. Faz a requisição com headers apropriados
+        const response = await fetch(`${API_URL}/sedes`, {
+            headers: { 'Content-Type': 'application/json' }
+        });
 
-    sedes.forEach((card) =>{
-        const nome = card.querySelector('.sedeBannerName')?.textContent.toLowerCase() || '';
-        const cidade = card.querySelector('.sedeBannerMeta')?.textContent.toLowerCase() || '';
-
-        if (nome.includes(termoBuscar) || cidade.includes(termoBuscar)){
-            card.classList.remove('esconderCard');
-        } else {
-            card.classList.add('esconderCard');
-            // IMPORTANTE: Se o card for escondido, fechamos os times dele 
-            // para que não fiquem abertos "fantasmas" se o usuário apagar a busca.
-            const teamsContainer = card.querySelector(".sedeBannerTeams");
-            teamsContainer?.classList.remove("active");
+        // 3. Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+            throw new Error(`Erro HTTP! Status: ${response.status}`);
         }
-    })
-})
+
+        const sedes = await response.json();
+
+        // 4. Valida se recebeu dados
+        if (!sedes || sedes.length === 0) {
+            console.warn('Nenhuma sede retornada da API');
+            return;
+        }
+
+        // 5. Cria um container temporário para as sedes
+        const sedesFrag = document.createDocumentFragment();
+
+        // 6. Percorre cada sede vinda do banco de dados
+        sedes.forEach(sede => {
+            
+            // 6. Monta o HTML dos times
+            let htmlDosTimes = '';
+            sede.times.forEach(time => {
+                // Cria as tags <li> para cada membro do time
+                const htmlDosMembros = time.membros.map(membro => `<li>${membro}</li>`).join('');
+                
+                // Monta o bloquinho do time
+                htmlDosTimes += `
+                    <div class="team">
+                        <h4>${time.nome}</h4>
+                        <ul>
+                            ${htmlDosMembros}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            // 7. Cria o "Card" (article) principal da sede
+            const article = document.createElement('article');
+            article.className = 'sedeBanner';
+            article.setAttribute('role', 'listitem');
+
+            // 8. Injeta o HTML da Sede e embute os times
+            article.innerHTML = `
+                <div class="sedeBannerBody">
+                    <h3 class="sedeBannerName">${sede.nome_campus}</h3>
+                    <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.local}</p>
+                    <div class="sedeBannerTeamsCounter">
+                        <span class="teamsCount">${sede.quantidade_times} times</span>
+                    </div>
+                </div>
+                <div class="sedeBannerTeams">
+                    ${htmlDosTimes}
+                </div>
+            `;
+
+            // 10. Adiciona o artigo no fragment
+            sedesFrag.appendChild(article);
+        });
+
+        // 11. SÓ AGORA limpa o container e injeta todos os dados de uma vez
+        container.innerHTML = '';
+        container.appendChild(sedesFrag);
+
+        // 12. Reinicializa os listeners após carregar os dados
+        initTeamsToggle();
+        initSedesVerMais();
+        
+        // 13. Inicializa a busca com os dados carregados
+        initBusca();
+
+    } catch (error) {
+        // Se houver erro, mantém os dados estáticos (não limpa, não mostra erro)
+        console.error('Erro ao carregar as sedes da API:', error);
+        // Apenas loga o erro no console para debug, sem afetar a página
+    }
+}
+
+// ========== FUNÇÃO DE BUSCA ==========
+function initBusca() {
+    const buscaCampo = document.getElementById("campoBusca");
+    if (!buscaCampo) return;
+
+    buscaCampo.addEventListener("input", () => {
+        const termoBuscar = buscaCampo.value.toLowerCase().trim();
+        const sedes = document.querySelectorAll('.sedeBanner'); // ← Pega os cards ATUAIS
+
+        sedes.forEach((card) => {
+            const nome = card.querySelector('.sedeBannerName')?.textContent.toLowerCase() || '';
+            const cidade = card.querySelector('.sedeBannerMeta')?.textContent.toLowerCase() || '';
+
+            if (nome.includes(termoBuscar) || cidade.includes(termoBuscar)) {
+                card.classList.remove('esconderCard');
+            } else {
+                card.classList.add('esconderCard');
+                // IMPORTANTE: Se o card for escondido, fechamos os times dele
+                const teamsContainer = card.querySelector(".sedeBannerTeams");
+                teamsContainer?.classList.remove("active");
+            }
+        });
+    });
+}
+
+// 14. Executa assim que a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+    // Primeiro inicializa os listeners para dados estáticos
+    initTeamsToggle();
+    initSedesVerMais();
+    initBusca();
+    
+    // Depois tenta carregar dados da API (que vai reinicializar os listeners)
+    carregarSedes();
+});
