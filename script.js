@@ -235,7 +235,9 @@ async function carregarSedes() {
             article.innerHTML = `
                 <div class="sedeBannerBody">
                     <h3 class="sedeBannerName">${sede.nome_campus}</h3>
-                    <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.local}</p>
+                    <p class="sedeBannerInstitution"><i class="fa-solid fa-building"></i> ${sede.instituicao}</p>
+                    <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.estado}</p>
+                    <p class="sedeBannerCity">${sede.localidade}</p>
                     <div class="sedeBannerTeamsCounter">
                         <span class="teamsCount">${sede.quantidade_times} times</span>
                     </div>
@@ -278,9 +280,11 @@ function initBusca() {
 
         sedes.forEach((card) => {
             const nome = card.querySelector('.sedeBannerName')?.textContent.toLowerCase() || '';
-            const cidade = card.querySelector('.sedeBannerMeta')?.textContent.toLowerCase() || '';
+            const instituicao = card.querySelector('.sedeBannerInstitution')?.textContent.toLowerCase() || '';
+            const localidade = card.querySelector('.sedeBannerCity')?.textContent.toLowerCase() || '';
+            const estadoLocalidade = card.querySelector('.sedeBannerMeta')?.textContent.toLowerCase() || '';
 
-            if (nome.includes(termoBuscar) || cidade.includes(termoBuscar)) {
+            if (nome.includes(termoBuscar) || instituicao.includes(termoBuscar) || localidade.includes(termoBuscar) || estadoLocalidade.includes(termoBuscar)) {
                 card.classList.remove('esconderCard');
             } else {
                 card.classList.add('esconderCard');
