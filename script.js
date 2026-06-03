@@ -306,3 +306,131 @@ document.addEventListener('DOMContentLoaded', () => {
     // Depois tenta carregar dados da API (que vai reinicializar os listeners)
     carregarSedes();
 });
+
+
+// ========== CARROSSEL DE TUTORIAL ==========
+const tracktutorial = document.querySelector('.tutoriaisCarouselTrack');
+const cardstutorial = document.querySelectorAll('.tutorialCard');
+const prevBtntutorial = document.querySelector('.prevBtnTutorial');
+const nextBtntutorial = document.querySelector('.nextBtnTutorial');
+
+const currentSlideElementtutorial = document.getElementById("currentTutorial");
+const totalSlidesElementtutorial = document.getElementById("totalTutorials")
+
+let currentIndextutorial = 0;
+const totalImagestutorial = cardstutorial.length;
+
+if (totalSlidesElementtutorial) {
+    totalSlidesElementtutorial.textContent = totalImagestutorial;
+}
+
+function moveNexttutorial() {
+    tracktutorial.style.opacity = 0; 
+    
+    setTimeout(() => {
+        const firstCardtutorial = tracktutorial.children[0];
+        tracktutorial.appendChild(firstCardtutorial);
+        currentIndextutorial = (currentIndextutorial + 1) % totalImagestutorial;
+
+        updateCountertutorial();
+        
+        tracktutorial.style.opacity = 1; 
+    }, 0);
+}
+
+function movePrevtutorial() {
+    const lastCardtutorial = tracktutorial.children[tracktutorial.children.length - 1];
+    tracktutorial.prepend(lastCardtutorial);
+    currentIndextutorial = (currentIndextutorial - 1 + totalImagestutorial) % totalImagestutorial;
+    updateCountertutorial();
+}
+
+function updateCountertutorial() {
+    if (currentSlideElementtutorial) {
+        currentSlideElementtutorial.textContent = currentIndextutorial + 1;
+    }
+}
+
+updateCountertutorial();
+
+if (prevBtntutorial) prevBtntutorial.addEventListener('click', movePrevtutorial);
+if (nextBtntutorial) nextBtntutorial.addEventListener('click', moveNexttutorial);
+
+
+let startXtutorial = 0;
+let endXtutorial = 0;
+
+if (tracktutorial) {
+    tracktutorial.addEventListener('touchstart', (e) => {
+        startXtutorial = e.changedTouches[0].clientX;
+    }, false);
+
+    tracktutorial.addEventListener('touchend', (e) => {
+        endXtutorial = e.changedTouches[0].clientX;
+        const threshold = 50;
+        
+        if (startXtutorial > endXtutorial + threshold) {
+            moveNexttutorial();
+        }
+        if (startXtutorial < endXtutorial - threshold) {
+            movePrevtutorial();
+        }
+    }, false);
+}
+
+// ========== INICIALIZAR BOTÃO VER MAIS (DESENVOLVEDORES) ==========
+function initDevsVerMais() {
+  const devTrack = document.getElementById("devTrack");
+  const devWrap = document.getElementById("devWrap");
+  const verMaisBtn = document.getElementById("devVerMaisBtn");
+  
+  // Define quantos cards formam a primeira linha (já que seu grid tem 5 colunas)
+  const DEVS_VISIVEIS = 5; 
+
+  if (!devTrack || !verMaisBtn) return;
+
+  const cards = devTrack.querySelectorAll(".devCard");
+  
+  // Se tiver 5 ou menos desenvolvedores, esconde o botão "Ver mais"
+  if (cards.length <= DEVS_VISIVEIS) {
+    verMaisBtn.hidden = true;
+    return;
+  }
+
+  verMaisBtn.addEventListener("click", () => {
+    const expanded = devTrack.classList.toggle("is-expanded");
+    if (devWrap) {
+        devWrap.classList.toggle("is-expanded", expanded);
+    }
+    verMaisBtn.setAttribute("aria-expanded", String(expanded));
+    verMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
+  });
+}
+
+// Não esqueça de chamar a função para ela rodar!
+initDevsVerMais();
+
+function initOrgaVerMais(){
+    const orgGrid = document.querySelector(".organizadoresGrid");
+    const btnOrg = document.getElementById("btnOrgVer");
+
+    const limite = 4;
+
+    if (!orgGrid || !btnOrg) return;
+
+    const cardsOrg = document.querySelectorAll(".organizadorCard");
+
+    if(cardsOrg <= limite){
+        btnOrg.hidden = true;
+        return
+    }
+
+    btnOrg.addEventListener('click', () => {
+        const expanded = orgGrid.classList.toggle("is-expanded");
+
+        btnOrg.setAttribute("aria-expanded", String(expanded));
+        btnOrg.textContent = expanded ? "ver menos" : "ver mais";
+    })}
+
+
+initOrgaVerMais();
