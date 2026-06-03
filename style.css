@@ -2815,3 +2815,8 @@ textarea {
     font-size: 15px;
   }
 }
+@media(max-width: 550px){
+  .tutoriaisCarouselTrack{
+    grid-auto-columns: calc((100%) / 1);  
+  }
+}
