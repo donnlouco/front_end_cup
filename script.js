@@ -40,74 +40,88 @@ window.addEventListener("scroll", () => {
 });
 
 
-// ========== CARROSSEL DE FOTOS ==========
+// ========== CARROSSEL DE FOTOS (COVERFLOW) ==========
 const track = document.querySelector('.carouselTrack');
-const cards = document.querySelectorAll('.cardCarousel');
+const cards = Array.from(document.querySelectorAll('.cardCarousel'));
 const prevBtn = document.querySelector('.prevBtnCarousel');
 const nextBtn = document.querySelector('.nextBtnCarousel');
 
 const currentSlideElement = document.getElementById("currentSlide");
-const totalSlidesElement = document.getElementById("totalSlides")
+const totalSlidesElement = document.getElementById("totalSlides");
 
 let currentIndex = 0;
 const totalImages = cards.length;
+
+const POSITION_CLASSES = ['is-prev2', 'is-prev', 'is-center', 'is-next', 'is-next2'];
 
 if (totalSlidesElement) {
     totalSlidesElement.textContent = totalImages;
 }
 
-function moveNext() {
-    track.style.opacity = 0; 
-    
-    setTimeout(() => {
-        const firstCard = track.children[0];
-        track.appendChild(firstCard);
-        currentIndex = (currentIndex + 1) % totalImages;
+function updateCarousel() {
+    cards.forEach((card, i) => {
+        // Remove todas as classes de posição
+        card.classList.remove(...POSITION_CLASSES);
 
-        updateCounter();
-        
-        track.style.opacity = 1; 
-    }, 0);
-}
+        // Calcula offset circular em relação ao card central
+        let offset = i - currentIndex;
 
-function movePrev() {
-    const lastCard = track.children[track.children.length - 1];
-    track.prepend(lastCard);
-    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-    updateCounter();
-}
+        // Corrige para envolver circularmente no menor caminho
+        if (offset > totalImages / 2)  offset -= totalImages;
+        if (offset < -totalImages / 2) offset += totalImages;
 
-function updateCounter() {
+        if      (offset === -2) card.classList.add('is-prev2');
+        else if (offset === -1) card.classList.add('is-prev');
+        else if (offset ===  0) card.classList.add('is-center');
+        else if (offset ===  1) card.classList.add('is-next');
+        else if (offset ===  2) card.classList.add('is-next2');
+        // fora do range de ±2: nenhuma classe → fica invisível
+    });
+
     if (currentSlideElement) {
         currentSlideElement.textContent = currentIndex + 1;
     }
 }
 
-updateCounter();
+function moveNext() {
+    currentIndex = (currentIndex + 1) % totalImages;
+    updateCarousel();
+}
+
+function movePrev() {
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    updateCarousel();
+}
+
+// Clique nas fotos laterais avança/retrocede
+cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+        if (card.classList.contains('is-prev') || card.classList.contains('is-prev2')) movePrev();
+        if (card.classList.contains('is-next') || card.classList.contains('is-next2')) moveNext();
+    });
+});
+
+// Inicializa
+updateCarousel();
 
 if (prevBtn) prevBtn.addEventListener('click', movePrev);
 if (nextBtn) nextBtn.addEventListener('click', moveNext);
 
-
+// Touch swipe
 let startX = 0;
 let endX = 0;
 
 if (track) {
     track.addEventListener('touchstart', (e) => {
         startX = e.changedTouches[0].clientX;
-    }, false);
+    }, { passive: true });
 
     track.addEventListener('touchend', (e) => {
         endX = e.changedTouches[0].clientX;
         const threshold = 50;
-        
-        if (startX > endX + threshold) {
-            moveNext();
-        }
-        if (startX < endX - threshold) {
-            movePrev();
-        }
-    }, false);
+        if (startX > endX + threshold) moveNext();
+        if (startX < endX - threshold) movePrev();
+    }, { passive: true });
 }
 
 
@@ -119,7 +133,7 @@ function initSedesVerMais() {
   const sedesRow = document.getElementById("sedesBannerRow");
   const sedesWrap = document.querySelector(".sedesBannerWrap");
   const verMaisBtn = document.getElementById("sedesVerMaisBtn");
-  const SEDES_VISIVEIS = 3;
+  const SEDES_VISIVEIS = 2;
 
   if (!sedesRow || !verMaisBtn) return;
 

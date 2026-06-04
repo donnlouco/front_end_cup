@@ -63,8 +63,8 @@ body{
 .header{
   position: relative;
   display: flex;
-  height: 13%;
-  min-height: 13%;
+  height: 10px;
+  min-height: 100px;
   width: 100%;
   position: relative;
   z-index: 50;
@@ -78,7 +78,7 @@ body{
   right: 0;
   background: rgb(0, 0, 0);
   width: 100%;
-  height: 10%;
+  height: 90px;
 }
 
 
@@ -110,24 +110,16 @@ body{
 .leftHeaderLogo{
   display: flex;
   align-items: center;
-  min-width: 10%;
-  padding: 8px;
-  padding-left: 30px;
+  min-width: 8%;
+  padding-right: 8px;
+  padding-left: 15px;
   background: rgba(0, 0, 0, 0.89);
-  border-radius: 20px 0px 0px 20px;
 }
 
 .leftHeader{
   display: flex;
   width: 60%;
   align-items: center;
-  
-  
-}
-
-.leftHeader h2{
-  color: white;
-  font-size: 38px;
 }
 
 .leftHeaderLogo img{
@@ -136,11 +128,30 @@ body{
 }
 
 .rightHeader{
- width: 30%;
+ width: 40%;
  display: flex;
- padding-right: 38px;
+ padding-right: 15px;
  align-items: center;
  justify-content: end;
+}
+
+@media(max-width:500px){
+  
+  .header{
+    max-height: 100px;
+  }
+
+  .rightHeader{
+    padding-right: 10px;
+  }
+
+  .leftHeaderLogo{
+    padding-left: 10px;
+  }
+
+  .leftHeaderLogo img{
+    width: 45px;
+  }
 }
 
 @media(max-width: 780px){
@@ -149,11 +160,11 @@ body{
   }
 
   .rightHeader{
-    padding-right: 23px;
+    padding-right: 15px;
   }
 
   .header{
-    min-height: 60px;
+    min-height: 100px;
   }
 }
 
@@ -161,10 +172,9 @@ body{
   position: absolute;
   left: 49%;
   transform: translate(-50%, -50%);
-  
-  font-family: "Pixelify Sans", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; /* Define o estilo como ExtraBold */
+  letter-spacing: 2px;
   margin: 0;
   font-size: 35px;
   opacity: 0;
@@ -172,7 +182,7 @@ body{
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
   gap: 0;
   width: auto;
   white-space: nowrap;
@@ -185,14 +195,25 @@ body{
   color: white;
 }
 
+
 .titulo-header-fixo.scrolled {
   position: fixed;
   left: 49%;
-  top: 15px;
+  top: 28px;
   opacity: 1;
   transform: translate(-49%, 0);
   pointer-events: auto;
   z-index: 99;
+}
+
+@media(max-width: 850px){
+  .titulo-header-fixo h1 span{
+    display: block;
+  }
+
+  .titulo-header-fixo.scrolled {
+    top: 8px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -206,6 +227,7 @@ body{
   .titulo-header-fixo.scrolled {
     width: 280px;
     gap: 5px;
+    top: 21px;
   }
   
   .titulo-header-fixo h1 {
@@ -218,7 +240,7 @@ body{
   .titulo-header-fixo.scrolled {
     width: 150px;
     font-size: 18px;
-    top: 22px;
+    top: 28px;
     left: 45%;
     transform: translate(-45%, 0);
   }
@@ -237,19 +259,20 @@ body{
   height: 50%;
   width: 100%;
 }
+
 .subContent{
   display: flex;
-  height: 160px;
+  height: 110px;
   width: 100%;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.89);
-  padding: 15px 28px;
-  font-family: "Pixelify Sans", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; /* Define o estilo como ExtraBold */
+  letter-spacing: 2px;
   gap: 80px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
+  text-align: center;
 }
 
 
@@ -267,6 +290,8 @@ body{
     0 4px 28px rgba(0, 0, 0, 0.5);
 }
 
+
+
 .contentTime{
   height: 50%;
   width: 100%;
@@ -278,20 +303,20 @@ body{
 
 .countdownContainer {
   background: rgba(0, 0, 0, 0.89); 
-  padding: 15px 15px 15px;
+  padding: 15px 15px 10px;
   width: auto;
-  min-width: 300px;
-  max-width: 350px;
+  min-width: 200px;
+  max-width: 230px;
   height: 100%;
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 00px 20px 0;
   text-align: center;
   color: white;
   font-family: "Roboto Slab", serif;
 }
 
 .countdownContainer h2 {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
+  margin: 0 0 2px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.3;
 }
@@ -300,31 +325,38 @@ body{
 .timer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
 }
 
 .box {
   background: rgba(255, 255, 255, 0.15);
-  padding: 5px 7px;
+  padding: 3px 5px;
   border-radius: 12px;
   min-width: 0;
-  width: 70%;
+  width: 80%;
+  font-size: 12px;
 }
 
 
 
 .box span {
-  display: block;
-  font-size: 27px;
+  font-size: 22px;
   font-weight: bold;
+  display: block;
 }
 
-.box p {
-  margin: 5px 0 0;
-  font-size: 0.9rem;
-  opacity: 0.8;
+@media(max-width: 1250px){
+  .subContent{
+    height: 180px;
+    margin-bottom: 50px;
+  }
+
+  .subContent h1 span{
+    display: block;
+  }
 }
+
 
 @media(max-width: 650px){
   .rightHeader{
@@ -335,34 +367,71 @@ body{
     font-size: 52px;
   }
 
+  .subContent{
+    height: 140px;
+    margin-bottom: 60px;
+  }
+
   .contentTime{
     padding-left: 5px;
   }
 
+
   .countdownContainer{
-    width: auto;
-    min-width: 100px;
-  } 
+  padding: 15px 15px 5px;
+}
+
   .countdownContainer h2{
-    font-size: 16px;
+    font-size: 12px;
+    margin: 0 0 0px;
   }
 
   .box{
-    width: 60%;
-    padding: 5px 10px;
+    width: 70%;
+    padding: 3px 8px;
+  }
+  .box span {
+    font-size: 15px;
+  }
+  .box p {
+    font-size: 11px;
+  }
+
+  .meubtn{
+    padding: 15px 7px;
+    font-size: 15px;
+  }
+}
+
+@media(max-width:500px){
+  
+  .timer {
+  gap: 5px;
+  width: 100%;
+}
+
+  .countdownContainer{
+    padding: 17px 17px 5px;
+  }
+
+  .countdownContainer h2{
+    font-size: 16px;
+    margin: 0 0 0px;
+  }
+
+  .box{
+    width: 70%;
+    padding: 3px 8px;
   }
   .box span {
     font-size: 18px;
   }
   .box p {
-    font-size: 13px;
+    font-size: 11px;
   }
 
-  .meubtn{
-    padding: 9px 7px;
-    font-size: 15px;
-  }
 }
+
 
 @media (max-width: 400px){
   .countdownContainer h2{
@@ -382,9 +451,10 @@ body{
   }
 }
 
+
 .timelineMain{
   width: 100%;
-  min-height: 450px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -400,8 +470,6 @@ body{
 .timelineSection {
   width: 100%;
   max-width: 70%;
-  padding: 20px;
-
   display: flex;
   flex-direction: column;
 }
@@ -410,7 +478,8 @@ body{
   color: white;
   text-align: center;
   font-family: 'Kanit', sans-serif; font-weight: 900;
-  font-size: 28px;
+  letter-spacing: 2px;
+  font-size: 32px;
 }
 
 .timeline{
@@ -420,6 +489,8 @@ body{
   width: 100%;
   margin: 0 auto;
   padding: 20px 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
 }
 
 .timeline::before{
@@ -495,12 +566,9 @@ body{
 }
 
 .timelineContent h3{
-  font-size: 25px;
+  font-size: 23px;
   color: #FFD700;
   margin: 0 0 8px 0;
-  font-family: "Roboto Slab", serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 #timelineDate{
@@ -512,7 +580,7 @@ body{
 
 #timelineDescription{
   color: rgba(255, 255, 255, 0.7);
-  font-size: 19px;
+  font-size: 15px;
   margin: 8px 0 0 0;
   line-height: 1.4;
 }
@@ -586,13 +654,6 @@ body{
     align-items: center;
   }
 
-  .subContent{
-    flex-direction: column;
-    gap: 0px;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    height: 180px;
-  }
   .timeline::before {
     left: 45px;
     width: 2px;
@@ -645,7 +706,11 @@ body{
   url(https://i.imgur.com/PFtv3Xg.png);
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   border-top: solid 2px #fbbf24;
+
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .buscarSedes{
@@ -687,7 +752,7 @@ body{
   font-family: "Kanit", sans-serif;
   font-weight: 900;
   font-size: 28px;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
 }
 
 .infoSectionTitle i {
@@ -700,9 +765,10 @@ body{
   max-width: 720px;
   text-align: center;
   color: rgb(255, 255, 255);
-  font-family: "Roboto Slab", serif;
-  font-size: 17px;
-  line-height: 1.55;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 18px;
 }
 
 .sedesBannerWrap {
@@ -722,7 +788,7 @@ body{
   width: 100%;
 }
 
-.sedesBannerRow:not(.is-expanded) .sedeBanner:nth-child(n + 4) {
+.sedesBannerRow:not(.is-expanded) .sedeBanner:nth-child(n + 3) {
   display: none;
 }
 
@@ -789,6 +855,9 @@ body{
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
   padding: 14px 18px;
   text-align: left;
   position: relative;
@@ -867,7 +936,11 @@ body{
 
 .sedeBannerTeamsCounter:before {
   content: '📋';
-  font-size: 20px;
+  font-size: 30px;
+}
+
+.sedeBannerTeamsCounter span{
+  font-size: 22px;
 }
 
 .sedeBannerTeams {
@@ -964,9 +1037,9 @@ body{
 
 .ferramentasBlocTitle {
   margin: 0 0 16px;
-  font-family: "Roboto Slab", serif;
-  font-size: 1.2rem;
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
+  line-height: 1.2;
   color: #fbbf24;
 }
 
@@ -979,9 +1052,10 @@ body{
   margin: 0;
   padding-left: 1.2em;
   color: rgba(255, 255, 255, 0.88);
-  font-family: "Roboto Slab", serif;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
   font-size: 14px;
-  line-height: 1.7;
 }
 
 .ferramentasList li {
@@ -1265,7 +1339,7 @@ body{
 .carouselContainer{
   width: 100%;
   min-height: 200px;
-  padding: 20px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1277,6 +1351,7 @@ body{
   color: white;
   text-align: center;
   font-family: 'Kanit', sans-serif; font-weight: 900;
+  letter-spacing: 2px;
   font-size: 32px;
 }
 
@@ -1287,12 +1362,18 @@ body{
 .carouselMain{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 70%;
-  gap: 15px;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+  position: relative;
 }
 
+/* Botões flutuantes sobre o carrossel */
 .prevBtnCarousel, .nextBtnCarousel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   flex-shrink: 0;     
   height: 50px;
   width: 50px;
@@ -1303,50 +1384,155 @@ body{
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
+.prevBtnCarousel { left: 20px; }
+.nextBtnCarousel { right: 20px; }
+
 .prevBtnCarousel:hover, .nextBtnCarousel:hover{
-  transform: scale(1.05);
-  transition: transform 0.3s ease-in-out;
+  transform: translateY(-50%) scale(1.12);
+  background-color: #ffd060;
 }
 
 .prevBtnCarousel:active, .nextBtnCarousel:active{
   background-color: #fbbe24c4;
+  transform: translateY(-50%) scale(0.97);
 }
 
+/* Track com perspectiva 3D */
 .carouselTrack{
   display: flex;
-  gap: 15px;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  scroll-behavior: smooth;
+  height: 380px;
+  position: relative;
+  perspective: 1200px;
   overflow: hidden;
-  flex-grow: 1;
-  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+/* Estado padrão: todos os cards ficam invisíveis até receber classe */
 .cardCarousel{
-  flex: 0 0 calc(33.333% - 10px); 
-  width: 32.2%;
+  position: absolute;
+  height: 280px;
+  width: 420px;
   object-fit: cover;    
-  border-radius: 15px;
+  border-radius: 16px;
   display: block;
+  cursor: pointer;
+  
+  /* Transição suave em tudo */
+  transition:
+    transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.55s ease,
+    filter 0.55s ease,
+    box-shadow 0.55s ease,
+    z-index 0s;
+  
+  opacity: 0;
+  pointer-events: none;
+  filter: brightness(0.45) blur(1px);
+  transform: translateX(0) scale(0.7) rotateY(0deg);
 }
 
-@media(max-width: 1400px){
-  .cardCarousel{
-    flex: 0 0 calc(50% - 10px); 
-    width: 48.7%
-  }
+/* Card central — destaque total */
+.cardCarousel.is-center {
+  opacity: 1;
+  pointer-events: auto;
+  filter: brightness(1) blur(0px);
+  transform: translateX(0) scale(1) rotateY(0deg);
+  z-index: 5;
+  height: 320px;
+  border-radius: 18px;
+}
+
+/* Card à esquerda imediato */
+.cardCarousel.is-prev {
+  opacity: 0.72;
+  pointer-events: auto;
+  filter: brightness(0.55) blur(0px);
+  transform: translateX(-68%) scale(0.82) rotateY(22deg);
+  z-index: 3;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* Card à direita imediato */
+.cardCarousel.is-next {
+  opacity: 0.72;
+  pointer-events: auto;
+  filter: brightness(0.55) blur(0px);
+  transform: translateX(68%) scale(0.82) rotateY(-22deg);
+  z-index: 3;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* Cards 2 posições atrás/frente — visíveis mas bem apagados */
+.cardCarousel.is-prev2 {
+  opacity: 0.35;
+  pointer-events: none;
+  filter: brightness(0.35) blur(1px);
+  transform: translateX(-115%) scale(0.65) rotateY(35deg);
+  z-index: 1;
+}
+
+.cardCarousel.is-next2 {
+  opacity: 0.35;
+  pointer-events: none;
+  filter: brightness(0.35) blur(1px);
+  transform: translateX(115%) scale(0.65) rotateY(-35deg);
+  z-index: 1;
 }
 
 @media(max-width: 900px){
-  .cardCarousel{
-    flex: 0 0 calc(100% - 10px); 
-    width: 99%
+  .carouselTrack {
+    height: 300px;
+  }
+  .cardCarousel {
+    width: 260px;
+    height: 200px;
+  }
+  .cardCarousel.is-center {
+    height: 240px;
+    width: 280px;
+  }
+  .cardCarousel.is-prev {
+    transform: translateX(-62%) scale(0.78) rotateY(18deg);
+  }
+  .cardCarousel.is-next {
+    transform: translateX(62%) scale(0.78) rotateY(-18deg);
+  }
+  .cardCarousel.is-prev2 {
+    transform: translateX(-108%) scale(0.58) rotateY(30deg);
+  }
+  .cardCarousel.is-next2 {
+    transform: translateX(108%) scale(0.58) rotateY(-30deg);
   }
   .prevBtnCarousel, .nextBtnCarousel{
-    height: 35px;
-    width: 35px;
+    height: 38px;
+    width: 38px;
+  }
+  .prevBtnCarousel { left: 8px; }
+  .nextBtnCarousel { right: 8px; }
+}
+
+@media(max-width: 550px){
+  .carouselTrack {
+    height: 250px;
+  }
+  .cardCarousel {
+    width: 220px;
+    height: 170px;
+  }
+  .cardCarousel.is-center {
+    height: 200px;
+    width: 240px;
+  }
+  .cardCarousel.is-prev2,
+  .cardCarousel.is-next2 {
+    opacity: 0;
   }
 }
 
@@ -1394,8 +1580,8 @@ body{
   text-align: center;
   font-family: "Kanit", sans-serif;
   font-weight: 900;
-  font-size: clamp(1.05rem, 2.2vw + 0.65rem, 1.75rem);
-  line-height: 1.2;
+  font-size: 32px;
+  letter-spacing: 2px;
   overflow-wrap: break-word;
 }
 
@@ -1409,9 +1595,9 @@ body{
   border-radius: 20px;
   padding: 28px 32px;
   color: rgba(255, 255, 255, 0.959);
-  font-family: "Roboto Slab", serif;
-  font-size: 17px;
-  line-height: 1.65;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
   border-left: 3px solid rgba(251, 191, 36, 0.85);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   overflow-wrap: break-word;
@@ -1434,11 +1620,10 @@ body{
   }
 
   .carouselMain{
-    width: 90%;
-    gap: 5px;
+    width: 100%;
   }
 
-  #carouselTitle{
+  .carouselTitle{
     font-size: 25px;
   }
 
@@ -1486,6 +1671,10 @@ body{
   }
 
   .historyTitle {
+    font-size: 18px;
+  }
+
+  .carouselTitle{
     font-size: 18px;
   }
 
@@ -1634,26 +1823,28 @@ body{
 .organizadorName {
   margin: 0 0 8px;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
-  font-family: "Roboto Slab", serif;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
 }
 
 .organizadorRole {
   margin: 0 0 12px;
   font-size: 14px;
   color: #fbbf24;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600
 }
 
 .organizadorDesc {
   margin: 0;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.75);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
   line-height: 1.6;
-  font-family: "Roboto Slab", serif;
 }
 
 /* ========== SEÇÃO DESENVOLVEDORES ========== */
@@ -1794,27 +1985,32 @@ body{
 
 .devImage {
   width: 100%;
-  height: 200px;
+  
+ 
+  height: auto; 
+  aspect-ratio: 1 / 1; 
+  
   object-fit: cover;
-  display: block;
+  object-position: top;
 }
 
 .devName {
   margin: 16px 0 8px;
   padding: 0 16px;
   font-size: 18px;
-  font-weight: 700;
   color: #fff;
-  font-family: "Roboto Slab", serif;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.6;
 }
 
 .devRole {
   margin: 0 16px 16px;
   font-size: 13px;
   color: #fbbf24;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600
 }
 
 @media(max-width:1350px){
@@ -1908,14 +2104,14 @@ body{
   font-weight: 900;
   font-size: 32px;
   margin: 0 0 16px;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .cadastroCTADescription {
   color: rgba(0, 0, 0, 0.88);
-  font-family: "Roboto Slab", serif;
-  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
   line-height: 1.6;
   margin: 0 0 28px;
 }
@@ -1963,7 +2159,8 @@ body{
   border-top: solid 1px #fbbf24;
   padding: 48px 20px 24px;
   color: white;
-  font-family: "Roboto Slab", serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500
 }
 
 .footerContent {
@@ -1978,13 +2175,13 @@ body{
 .footerSection h4 {
   color: #fbbf24;
   margin: 0 0 16px;
-  font-family: "Kanit", sans-serif;
-  font-weight: 900;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
   font-size: 18px;
 }
 
 .footerSection h3 {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .footerBrand p {
@@ -2064,8 +2261,8 @@ body{
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
   background-color: #000000;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-bottom: 10px;
   
 }
@@ -2581,9 +2778,6 @@ textarea {
 
 
 @media (max-height: 800px) {
-  .rightHeader{
-  padding-right: 10px;
-  }
 
   .meubtn{
     padding: 12px 10px;
@@ -2591,29 +2785,28 @@ textarea {
   }
 
   .header{
-    min-height: 90px;
+    min-height: 100px;
   }
 
+
   .countdownContainer{
-    padding: 5px 5px 5px;
+    padding: 15px 5px 5px;
   }
 
   .countdownContainer h2 {
-    font-size: 11px;
-    margin: 0 0 5px;
+    font-size: 13px;
+    margin: 0 0 0px;
     
   }
 
   .timer {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-top: 10px;
+  gap: 3px;
+  margin-top: 0px;
   width: 100%;
 }
 
   .box {
-    padding: 5px 6px;
+    padding: 3px 7px;
   }
 
   .box span {
@@ -2754,42 +2947,7 @@ textarea {
   }
 }
 
-@media(max-width:500px){
-  
-  .header{
-    max-height: 115px;
-  }
 
-  .rightHeader{
-    padding-right: 10px;
-  }
-
-  .leftHeaderLogo img{
-    width: 40px;
-  }
-
-  .timer {
-  gap: 5px;
-  width: 100%;
-}
-
-.countdownContainer h2{
-    font-size: 14px;
-    padding: 5px 5px 5px;
-  }
-
-  .box{
-    width: 50%;
-    padding: 5px 7px;
-  }
-  .box span {
-    font-size: 15px;
-  }
-  .box p {
-    font-size: 11px;
-  }
-
-}
 
 @media(max-width:780px){
   .tutoriaisSection{
