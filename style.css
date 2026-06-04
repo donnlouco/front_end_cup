@@ -270,7 +270,6 @@ body{
   font-family: 'Montserrat', sans-serif;
   font-weight: 800; /* Define o estilo como ExtraBold */
   letter-spacing: 2px;
-  gap: 80px;
   margin-bottom: 70px;
   text-align: center;
 }
@@ -349,7 +348,7 @@ body{
 @media(max-width: 1250px){
   .subContent{
     height: 180px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
   .subContent h1 span{
@@ -2838,7 +2837,7 @@ textarea {
 }
 
 
-@media (max-height: 800px) {
+@media (max-height: 750px) {
 
   .meubtn{
     padding: 12px 10px;
