@@ -74,6 +74,11 @@
                     </div>
 
                     <div class="formGroup">
+                        <label for="campus" class="requiredLabel">Campus</label>
+                        <input type="text" id="campus" name="campus" placeholder="Ex: Campus Três Lagoas" required>
+                    </div>
+
+                    <div class="formGroup">
                         <label for="endereco" class="requiredLabel">Endereço Completo</label>
                         <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123 - Bairro - Complemento" required>
                     </div>
@@ -195,6 +200,7 @@
                 estado: document.getElementById('estado').value,
                 cidade: document.getElementById('cidade').value,
                 instituicao: document.getElementById('instituicao').value,
+                campus: document.getElementById('campus').value,
                 endereco: document.getElementById('endereco').value,
                 responsavel_nome: document.getElementById('responsavel_nome').value,
                 responsavel_cpf: document.getElementById('responsavel_cpf').value, // Aqui envia o CPF com a máscara

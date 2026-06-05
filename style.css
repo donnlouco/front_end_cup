@@ -1290,6 +1290,18 @@ body{
     padding: 32px 16px 36px;
   }
 
+  .timelineTitle{
+    font-size: 22px;
+  }
+
+  .carouselTitle{
+    font-size: 22px;
+  }
+
+  .historyTitle{
+    font-size: 22px;
+  }
+
   .infoSectionTitle {
     font-size: 22px;
   }
@@ -1746,9 +1758,6 @@ body{
     padding: 32px 14px 40px;
   }
 
-  .historyTitle {
-    letter-spacing: 0.02em;
-  }
 
 }
 
@@ -2837,7 +2846,7 @@ textarea {
 }
 
 
-@media (max-height: 750px) {
+@media (max-width: 450px) {
 
   .meubtn{
     padding: 12px 10px;
@@ -2846,6 +2855,19 @@ textarea {
 
   .header{
     min-height: 100px;
+  }
+
+  .leftHeaderLogo{
+    padding-left: 10px;
+  }
+
+  .rightHeader{
+    padding-right: 10px;
+  }
+
+  .footerBottom{
+    padding-right: 9px;
+    padding-left: 10px;
   }
 
 
@@ -2879,10 +2901,14 @@ textarea {
   }
 
   .subContent{
-    height: 140px;
-    margin-bottom: 50px;
+    height: 110px;
+    margin-bottom: 60px;
   }
   
+  .subContent h1{
+    font-size: 37px;
+  }
+
 
   .timelineMain {
     min-height: auto;
@@ -2913,8 +2939,12 @@ textarea {
   }
 
   .timelineTitle {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
+  }
+
+  .carouselTitle{
+    font-size: 18px;
   }
 
   .imgIf img{
@@ -2943,12 +2973,6 @@ textarea {
 
 }
 
-@media(max-width:450px){
-  .subContent h1{
-    font-size: 37px;
-  }
-
-}
 
 @media (max-width: 600px){
   .imgIf img{
