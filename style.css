@@ -1329,6 +1329,209 @@ body{
   }
 }
 
+/* ========== SEÇÃO CADASTRO DE TIMES ========== */
+.cadastroTimesSection {
+  width: 100%;
+  padding: 64px 20px;
+  background: linear-gradient(135deg, rgba(10, 16, 30, 0.98) 0%, rgba(20, 30, 55, 0.98) 100%);
+  border-top: 2px solid rgba(251, 191, 36, 0.35);
+  border-bottom: 2px solid rgba(251, 191, 36, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cadastroTimesContent {
+  max-width: 70%;
+  width: 100%;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.cadastroTimesLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cadastroTimesIcon {
+  font-size: 52px;
+  color: #fbbf24;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.cadastroTimesTitle {
+  color: #fbbf24;
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.cadastroTimesDescription {
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.cadastroTimesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastroTimesList li {
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cadastroTimesList li i {
+  color: #fbbf24;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.cadastroTimesButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
+  color: black;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-family: "Kanit", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.3);
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.cadastroTimesButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(251, 191, 36, 0.5);
+  background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
+}
+
+.cadastroTimesRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cadastroTimesCard {
+  background: rgba(27, 27, 27, 0.75);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cadastroTimesCard:hover {
+  transform: translateX(6px);
+  border-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
+.cadastroTimesCardIcon {
+  font-size: 28px;
+  color: #fbbf24;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: rgba(251, 191, 36, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cadastroTimesCard h4 {
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.cadastroTimesCard p {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .cadastroTimesContent {
+    max-width: 90%;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 850px) {
+  .cadastroTimesContent {
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .cadastroTimesTitle {
+    font-size: 28px;
+  }
+
+  .cadastroTimesButton {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cadastroTimesSection {
+    padding: 44px 16px;
+  }
+
+  .cadastroTimesContent {
+    max-width: 100%;
+  }
+
+  .cadastroTimesTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cadastroTimesTitle {
+    font-size: 22px;
+  }
+
+  .cadastroTimesCard {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+}
 
 .carouselContainer{
   width: 100%;
