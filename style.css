@@ -1614,8 +1614,8 @@ body{
 /* Estado padrão: todos os cards ficam invisíveis até receber classe */
 .cardCarousel{
   position: absolute;
-  height: 280px;
-  width: 420px;
+  height: 320px;
+  width: 500px;
   object-fit: cover;    
   border-radius: 16px;
   display: block;
@@ -1681,6 +1681,32 @@ body{
   filter: brightness(0.35) blur(1px);
   transform: translateX(115%) scale(0.65) rotateY(-35deg);
   z-index: 1;
+}
+
+@media(max-width: 1350px){
+  .carouselTrack {
+    height: 340px;
+  }
+  .cardCarousel {
+    width: 360px;
+    height: 250px;
+  }
+  .cardCarousel.is-center {
+    height: 270px;
+    width: 390px;
+  }
+  .cardCarousel.is-prev {
+    transform: translateX(-62%) scale(0.78) rotateY(18deg);
+  }
+  .cardCarousel.is-next {
+    transform: translateX(62%) scale(0.78) rotateY(-18deg);
+  }
+  .cardCarousel.is-prev2 {
+    transform: translateX(-108%) scale(0.58) rotateY(30deg);
+  }
+  .cardCarousel.is-next2 {
+    transform: translateX(108%) scale(0.58) rotateY(-30deg);
+  }
 }
 
 @media(max-width: 900px){
