@@ -79,6 +79,7 @@ body{
   background: rgb(0, 0, 0);
   width: 100%;
   height: 90px;
+  min-height: 50px;
 }
 
 
@@ -199,7 +200,7 @@ body{
 .titulo-header-fixo.scrolled {
   position: fixed;
   left: 49%;
-  top: 28px;
+  top: 25px;
   opacity: 1;
   transform: translate(-49%, 0);
   pointer-events: auto;
@@ -212,7 +213,7 @@ body{
   }
 
   .titulo-header-fixo.scrolled {
-    top: 8px;
+    top: 4px;
   }
 }
 
@@ -227,7 +228,7 @@ body{
   .titulo-header-fixo.scrolled {
     width: 280px;
     gap: 5px;
-    top: 21px;
+    top: 17px;
   }
   
   .titulo-header-fixo h1 {
@@ -240,7 +241,7 @@ body{
   .titulo-header-fixo.scrolled {
     width: 150px;
     font-size: 18px;
-    top: 28px;
+    top: 24px;
     left: 45%;
     transform: translate(-45%, 0);
   }
@@ -2351,7 +2352,7 @@ body{
 }
 
 .imgIf img{
-  width: 150px;
+  width: 220px;
   height: auto;
 }
 
@@ -2948,8 +2949,8 @@ textarea {
   }
 
   .imgIf img{
-  padding-top: 5px;
-  width: 140px;
+  padding-top: 2px;
+  width: 170px;
   height: auto;
 }
 
@@ -2976,8 +2977,8 @@ textarea {
 
 @media (max-width: 600px){
   .imgIf img{
-  padding-top: 5px;
-  width: 140px;
+  padding-top: 0px;
+  width: 170px;
   height: auto;
 }
 
