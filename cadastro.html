@@ -30,6 +30,18 @@
                     <h3><i class="fa-solid fa-university"></i> Dados da Instituição</h3>
 
                     <div class="formGroup">
+                        <label for="regiao" class="requiredLabel">Região</label>
+                        <select id="regiao" name="regiao" required>
+                            <option value="">Selecione uma região</option>
+                            <option value="0">Centro-oeste</option>
+                            <option value="1">Nordeste</option>
+                            <option value="2">Norte</option>
+                            <option value="3">Sudeste</option>
+                            <option value="4">Sul</option>
+                        </select>
+                    </div>
+
+                    <div class="formGroup">
                         <label for="estado" class="requiredLabel">Estado</label>
                         <select id="estado" name="estado" required>
                             <option value="">Selecione um estado</option>
@@ -82,6 +94,25 @@
                         <label for="endereco" class="requiredLabel">Endereço Completo</label>
                         <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123 - Bairro - Complemento" required>
                     </div>
+                    <div class="formGroup">
+                        <label for="link_imagem" class="requiredLabel">Link imagem do campus</label>
+                        <input type="url" id="link_imagem" name="link_imagem" placeholder="https://exemplo.com/foto-campus.jpg" required>
+                    </div>
+                    <div class="formGroup">
+                        <label class="requiredLabel">Nível de Ensino Participante</label>
+                        <div class="checkboxGroup" id="nivelEnsinoGroup">
+                            <label class="checkboxOption">
+                                <input type="checkbox" id="nivel_medio" name="nivel_ensino" value="Ensino Médio">
+                                <span>Ensino Médio</span>
+                            </label>
+                            <label class="checkboxOption">
+                                <input type="checkbox" id="nivel_graduacao" name="nivel_ensino" value="Graduação">
+                                <span>Graduação</span>
+                            </label>
+                        </div>
+                        <span class="checkboxError" id="nivelEnsinoError">Selecione pelo menos uma opção.</span>
+                    </div>
+                    
                 </div>
                 <div class="formSection">
                     <h3><i class="fa-solid fa-user-tie"></i> Dados do Responsável</h3>
@@ -112,14 +143,19 @@
 
                     <div class="formRow">
                         <div class="formGroup">
-                            <label for="responsavel_email" class="requiredLabel">E-mail</label>
-                            <input type="email" id="responsavel_email" name="responsavel_email" placeholder="seu.email@exemplo.com" required>
+                            <label for="responsavel_cel" class="requiredLabel">Celular</label>
+                            <input type="tel" id="responsavel_cel" name="responsavel_cel" placeholder="(11) 99999-9999" required>
                         </div>
                         <div class="formGroup">
                             <label for="responsavel_telefone" class="requiredLabel">Telefone</label>
                             <input type="tel" id="responsavel_telefone" name="responsavel_telefone" placeholder="(11) 99999-9999" required>
                         </div>
                     </div>
+                    <div class="formGroup">
+                            <label for="responsavel_email" class="requiredLabel">E-mail</label>
+                            <input type="email" id="responsavel_email" name="responsavel_email" placeholder="seu.email@exemplo.com" required>
+                        </div>
+                    
                 </div>
                 <div class="formSection">
 
@@ -174,6 +210,17 @@
             }
             e.target.value = value;
         });
+        const celularInput = document.getElementById('responsavel_cel');
+        celularInput.addEventListener('input', function(c) {
+            let value = c.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            if (value.length > 7) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2, 7) + '-' + value.slice(7);
+            } else if (value.length > 2) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2);
+            }
+            c.target.value = value;
+        });
 
         // Validação do formulário
         const form = document.getElementById('cadastroForm');
@@ -182,6 +229,15 @@
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault()
+
+            const medio_selecionado = document.getElementById('nivel_medio').checked;
+            const graduacao_selecionado = document.getElementById('nivel_graduacao').checked;
+
+            if(!medio_selecionado && !graduacao_selecionado){
+                showError('Voce precisa selecionar um nivel de ensino para participar')
+                return
+            }
+
             // Validar CPF
             const cpf = cpfInput.value.replace(/\D/g, '');
             if (cpf.length !== 11) {
@@ -196,24 +252,38 @@
                 return;
             }
 
+            const celular = celularInput.value.replace(/\D/g, '');
+            if (celular.length < 10) {
+                showError('Celular inválido. Digite um telefone válido.');
+                return;
+            }
+
+
             const dadosParaEnviar = {
-                estado: document.getElementById('estado').value,
+                uf: document.getElementById('estado').value,
                 cidade: document.getElementById('cidade').value,
                 instituicao: document.getElementById('instituicao').value,
                 campus: document.getElementById('campus').value,
+                resp_nome: document.getElementById('responsavel_nome').value,
+                resp_cpf: cpf, 
+                resp_cargo: document.getElementById('responsavel_cargo').value,
+                resp_email: document.getElementById('responsavel_email').value,
                 endereco: document.getElementById('endereco').value,
-                responsavel_nome: document.getElementById('responsavel_nome').value,
-                responsavel_cpf: document.getElementById('responsavel_cpf').value, // Aqui envia o CPF com a máscara
-                responsavel_cargo: document.getElementById('responsavel_cargo').value,
-                responsavel_email: document.getElementById('responsavel_email').value,
-                responsavel_telefone: document.getElementById('responsavel_telefone').value // Aqui envia o telefone com a máscara
+                resp_fone: telefone, 
+                resp_cel: celular, 
+                regiao: parseInt(document.getElementById('regiao').value, 10),
+                ano: 2026,
+                evento: 2,
+                medio: medio_selecionado,
+                graduacao: graduacao_selecionado,
+                link_img: document.getElementById('link_imagem').value
             };
 
             try {
-                // Altere esta URL para a rota real do seu back-end em Python
-                const response = await fetch('http://localhost:8000/api/registrar-campus', {
+                const response = await fetch('https://frontendteamscup.com.br/api/cadastro-sedes', {
                     method: 'POST',
                     headers: {
+                        'accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(dadosParaEnviar)
