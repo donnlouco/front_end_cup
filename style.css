@@ -774,6 +774,10 @@ body{
   display: none;
 }
 
+.sedesBannerRow.is-expanded .sedeBanner:nth-child(n + 3) {
+  display: flex; /* Ou 'block', dependendo de como estruturou o interno do seu .sedeBanner */
+}
+
 .sedesVerMaisBtn {
   position: absolute;
   right: 0;

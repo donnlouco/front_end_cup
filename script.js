@@ -138,16 +138,25 @@ function initSedesVerMais() {
   if (!sedesRow || !verMaisBtn) return;
 
   const banners = sedesRow.querySelectorAll(".sedeBanner");
+
   if (banners.length <= SEDES_VISIVEIS) {
-    verMaisBtn.hidden = true;
+    verMaisBtn.style.display = "none";
+    sedesRow.classList.remove("is-expanded");
+    sedesWrap?.classList.remove("is-expanded");
     return;
   }
 
-  verMaisBtn.addEventListener("click", () => {
+  verMaisBtn.style.display = "block";
+
+  verMaisBtn.replaceWith(verMaisBtn.cloneNode(true));
+
+  const novoVerMaisBtn = document.getElementById("sedesVerMaisBtn");
+
+  novoVerMaisBtn.addEventListener("click", () => {
     const expanded = sedesRow.classList.toggle("is-expanded");
     sedesWrap?.classList.toggle("is-expanded", expanded);
     verMaisBtn.setAttribute("aria-expanded", String(expanded));
-    verMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
+    novoerMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
   });
 }
 
@@ -188,10 +197,9 @@ function initTeamsToggle() {
 
 
 // ========== CARREGAR SEDES E TIMES DA API ===========
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'https://frontendteamscup.com.br/api/eventos/2/sedes-times';
 
 async function carregarSedes() {
-    // 1. Valida se o container existe
     const container = document.getElementById('sedesBannerRow');
     if (!container) {
         console.error('Container #sedesBannerRow não encontrado no HTML');
@@ -199,59 +207,101 @@ async function carregarSedes() {
     }
 
     try {
-        // 2. Faz a requisição com headers apropriados
-        const response = await fetch(`${API_URL}/sedes`, {
+        const response = await fetch(`${API_URL}`, {
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
 
-        // 3. Verifica se a resposta foi bem-sucedida
         if (!response.ok) {
             throw new Error(`Erro HTTP! Status: ${response.status}`);
         }
 
-        const sedes = await response.json();
+        const dados = await response.json();
+        const sedes = dados.sedes;
 
-        // 4. Valida se recebeu dados
         if (!sedes || sedes.length === 0) {
             console.warn('Nenhuma sede retornada da API');
             return;
         }
 
-        // 5. Cria um container temporário para as sedes
         const sedesFrag = document.createDocumentFragment();
 
-        // 6. Percorre cada sede vinda do banco de dados
         sedes.forEach(sede => {
-            
-            // 6. Monta o HTML dos times
             let htmlDosTimes = '';
-            sede.times.forEach(time => {
-                // Cria as tags <li> para cada membro do time
-                const htmlDosMembros = time.membros.map(membro => `<li>${membro}</li>`).join('');
-                
-                // Monta o bloquinho do time
-                htmlDosTimes += `
-                    <div class="team">
-                        <h4>${time.nome}</h4>
-                        <ul>
-                            ${htmlDosMembros}
-                        </ul>
-                    </div>
-                `;
-            });
+            
+            if (sede.times && Array.isArray(sede.times)) {
+                sede.times.forEach(time => {
+                    
+                    // 1. Mapeia os integrantes APENAS como texto (Nome e Função)
+                    const htmlDosMembros = time.integrantes && Array.isArray(time.integrantes) &&  time.integrantes.length > 0
+                        ? time.integrantes.map(membro => {
+        
+                            // Função interna para transformar "NOME EM MAIÚSCULO" ou "nome em minúsculo" em "Nome Formatado"
+                            const formatarNome = (nomeCompleto) => {
+                                if (!nomeCompleto) return '';
+                                
+                                // Lista de conectores que geralmente devem ficar em minúsculo
+                                const excecoes = ['de', 'di', 'do', 'da', 'dos', 'das', 'e'];
+                                
+                                return nomeCompleto
+                                    .toLowerCase()                    // Transforma tudo em minúsculo primeiro
+                                    .split(' ')                       // Divide o nome por espaços
+                                    .filter(palavra => palavra !== '') // Remove espaços duplos perdidos
+                                    .map((palavra, index) => {
+                                        // Se for um conector (e não for a primeira palavra), mantém minúsculo
+                                        if (excecoes.includes(palavra) && index > 0) {
+                                            return palavra;
+                                        }
+                                        // Caso contrário, capitaliza a primeira letra
+                                        return palavra.charAt(0).toUpperCase() + palavra.slice(1);
+                                    })
+                                    .join(' ');                       // Junta o nome novamente
+                            };
 
-            // 7. Cria o "Card" (article) principal da sede
+                            const formatarFuncao = (funcao) => {
+                                if (!funcao) return 'Membro';
+                                const f = funcao.trim().toLowerCase();
+                                if (f === 'líder' || f === 'lider') return 'Líder';
+                                if (f === 'membro') return 'Membro';
+                                if (f === 'integrante') return 'Membro'; // Padroniza (INTEGRANTE) para Membro se preferir, ou 'Integrante'
+                                return funcao; // Mantém o original caso seja algo diferente
+                            };
+
+                            const nomeTratado = formatarNome(membro.nome);
+                            const funcaoTratada = formatarFuncao(membro.funcao);
+
+                            return `
+                                <li>
+                                    <strong>${nomeTratado}</strong> 
+                                    <small>(${funcaoTratada})</small>
+                                </li>
+                            `;
+                    }).join('')
+                    : '<li>Nenhum integrante cadastrado</li>';
+                    
+                    // 2. Monta o bloco do time APENAS com o título em texto, sem escudo/imagem
+                    htmlDosTimes += `
+                        <div class="team">
+                            <h4>${time.nome}</h4>
+                            <ul>
+                                ${htmlDosMembros}
+                            </ul>
+                        </div>
+                    `;
+                });
+            }
+
+            // 3. Cria o Card principal da Sede (também sem imagem de fundo se preferir controlar via CSS)
             const article = document.createElement('article');
             article.className = 'sedeBanner';
             article.setAttribute('role', 'listitem');
 
-            // 8. Injeta o HTML da Sede e embute os times
             article.innerHTML = `
                 <div class="sedeBannerBody">
                     <h3 class="sedeBannerName">${sede.nome_campus}</h3>
                     <p class="sedeBannerInstitution"><i class="fa-solid fa-building"></i> ${sede.instituicao}</p>
-                    <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.estado}</p>
-                    <p class="sedeBannerCity">${sede.localidade}</p>
+                    <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.uf}</p>
+                    <p class="sedeBannerCity">${sede.local || sede.cidade}</p>
                     <div class="sedeBannerTeamsCounter">
                         <span class="teamsCount">${sede.quantidade_times} times</span>
                     </div>
@@ -261,25 +311,19 @@ async function carregarSedes() {
                 </div>
             `;
 
-            // 10. Adiciona o artigo no fragment
             sedesFrag.appendChild(article);
         });
 
-        // 11. SÓ AGORA limpa o container e injeta todos os dados de uma vez
         container.innerHTML = '';
         container.appendChild(sedesFrag);
 
-        // 12. Reinicializa os listeners após carregar os dados
+        // Reinicializa as interações da página
         initTeamsToggle();
         initSedesVerMais();
-        
-        // 13. Inicializa a busca com os dados carregados
         initBusca();
 
     } catch (error) {
-        // Se houver erro, mantém os dados estáticos (não limpa, não mostra erro)
         console.error('Erro ao carregar as sedes da API:', error);
-        // Apenas loga o erro no console para debug, sem afetar a página
     }
 }
 
