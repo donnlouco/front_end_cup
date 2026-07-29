@@ -114,7 +114,6 @@ body{
   min-width: 8%;
   padding-right: 8px;
   padding-left: 15px;
-  background: rgba(0, 0, 0, 0.89);
 }
 
 .leftHeader{
@@ -2009,7 +2008,7 @@ body{
   }
 
   .timelineContent h3{
-    font-size: 18px;
+    font-size: 16px;
   }
 
   #timelineDate{
@@ -3098,7 +3097,7 @@ textarea {
   }
 
   .infoSectionLead {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 22px;
   }
 
@@ -3212,7 +3211,7 @@ textarea {
   }
 
   .cadastroCTADescription {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 16px;
   }
 
@@ -3220,6 +3219,25 @@ textarea {
     padding: 12px 20px;
     font-size: 12px;
   }
+
+  .cadastroTimesIcon{
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .cadastroTimesTitle{
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .cadastroTimesDescription{
+    font-size: 14px;
+  }
+
+  .cadastroTimesList li{
+    font-size: 13px;
+  }
+  
 
 }
 
@@ -3323,7 +3341,7 @@ textarea {
   }
 
   .timelineContent h3 {
-    font-size: 18px;
+    font-size: 15px;
     margin: 0 0 4px;
   }
 
