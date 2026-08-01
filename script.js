@@ -1,25 +1,3 @@
-// ========== COUNTDOWN ==========
-const eventDate = new Date("Jun 15, 2026 00:00:00").getTime();
-
-const updateCountdown = setInterval(function() {
-  const now = new Date().getTime();
-  const distance = eventDate - now;
-
-  const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days").innerText = d;
-  document.getElementById("hours").innerText = h;
-  document.getElementById("minutes").innerText = m;
-  document.getElementById("seconds").innerText = s;
-
-  if (distance < 0) {
-    clearInterval(updateCountdown);
-    document.querySelector(".timer").innerHTML = "<h3>O evento começou!</h3>";
-  }
-}, 1000);
 
 // ========== HEADER SCROLL ==========
 window.addEventListener("scroll", () => {
@@ -156,7 +134,7 @@ function initSedesVerMais() {
     const expanded = sedesRow.classList.toggle("is-expanded");
     sedesWrap?.classList.toggle("is-expanded", expanded);
     verMaisBtn.setAttribute("aria-expanded", String(expanded));
-    novoerMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
+    novoVerMaisBtn.textContent = expanded ? "ver menos" : "ver mais";
   });
 }
 
@@ -492,3 +470,40 @@ function initOrgaVerMais(){
 
 
 initOrgaVerMais();
+
+// ========== FUNCIONALIDADE VER MAIS PARA BLOCOS DE HISTÓRIA ==========
+function initHistoryVerMais() {
+  const historyBtns = document.querySelectorAll('.historyBlockBtnMais');
+  
+  historyBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Encontra o container de texto mais próximo
+      const textContent = btn.previousElementSibling;
+      
+      if (textContent && textContent.classList.contains('historyBlockTextContent')) {
+        const isExpanded = textContent.classList.contains('expanded');
+        
+        // Toggle da classe expanded
+        textContent.classList.toggle('expanded');
+        
+        // Muda o texto do botão
+        btn.textContent = isExpanded ? 'VER MAIS' : 'VER MENOS';
+        btn.classList.toggle('active', !isExpanded);
+        
+        // Smooth scroll suave para o elemento (opcional)
+        if (!isExpanded) {
+          textContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    });
+  });
+}
+
+// Executa quando o DOM está pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHistoryVerMais);
+} else {
+  initHistoryVerMais();
+}

@@ -131,7 +131,7 @@ body{
  width: 40%;
  display: flex;
  padding-right: 15px;
- align-items: center;
+  align-items: center;
  justify-content: end;
 }
 
@@ -241,8 +241,8 @@ body{
     width: 150px;
     font-size: 18px;
     top: 24px;
-    left: 45%;
-    transform: translate(-45%, 0);
+    left: 38%;
+    transform: translate(-38%, 0);
   }
 }
 
@@ -277,7 +277,7 @@ body{
 
 .subContent h1{
   color: white;
-  font-size: 82px;
+  font-size: 73px;
   font-weight: 900;
   line-height: 1.08;
   margin: 0;
@@ -1499,6 +1499,7 @@ body{
   .cadastroTimesContent {
     flex-direction: column;
     gap: 36px;
+    text-align: center;
   }
 
   .cadastroTimesTitle {
@@ -1523,6 +1524,13 @@ body{
   .cadastroTimesTitle {
     font-size: 24px;
   }
+
+}
+
+@media (max-width:600px){
+  .cadastroTimesCard {
+    align-items: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1533,6 +1541,7 @@ body{
   .cadastroTimesCard {
     padding: 16px 18px;
     gap: 14px;
+    align-items: center;
   }
 }
 
@@ -1921,6 +1930,50 @@ body{
   margin-bottom: 0;
 }
 
+/* ========== TRUNCAMENTO DE TEXTO ========== */
+.historyBlockTextContent {
+  max-height: 300px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  position: relative;
+}
+
+
+.historyBlockTextContent.expanded {
+  max-height: none;
+}
+
+
+.historyBlockBtnMais {
+  margin-top: 16px;
+  padding: 10px 22px;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid #fbbf24;
+  color: #fbbf24;
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.historyBlockBtnMais:hover {
+  background: rgba(251, 191, 36, 0.25);
+  transform: translateY(-1px);
+  border-color: #fbbf24;
+}
+
+
+
+@media (max-width: 1300px) {
+  .historyBlockTextContent {
+    max-height: 180px;
+  }
+}
+
 @media (max-width: 900px) {
   .historyBlock {
     grid-template-columns: 1fr;
@@ -1938,6 +1991,10 @@ body{
   .historyBlockImg img {
     height: 260px;
   }
+
+  .historyBlockTextContent {
+    max-height: 150px;
+  }
 }
 
 @media (max-width: 550px) {
@@ -1951,6 +2008,16 @@ body{
 
   .historyBlockText p {
     font-size: 14px;
+  }
+
+  .historyBlockTextContent {
+    max-height: 130px;
+  }
+
+  .historyBlockBtnMais {
+    padding: 8px 18px;
+    font-size: 12px;
+    margin-top: 12px;
   }
 }
 
@@ -2204,7 +2271,7 @@ body{
   background: rgba(27, 27, 27, 0.75);
   border-radius: 35px;
   padding: 28px 24px;
-  border: 1px solid rgba(251, 191, 36, 0.85);
+  border: 1px solid rgba(251, 190, 36, 0.486);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -2221,7 +2288,7 @@ body{
   margin: 0 auto 16px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(251, 191, 36, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2243,22 +2310,20 @@ body{
 }
 
 .organizadorRole {
-  margin: 0 0 12px;
   font-size: 14px;
   color: #fbbf24;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-weight: 600
 }
-
-.organizadorDesc {
-  margin: 0;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.75);
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
+.organizadorCampus, .organizadorArea {
+  font-size: 13px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600
 }
+
 
 /* ========== SEÇÃO DESENVOLVEDORES ========== */
 .desenvolvedoresMain {
@@ -2695,7 +2760,7 @@ body{
 }
 
 .imgBrasil img{
-  width: 150px;
+  width: 200px;
   height: auto;
 }
 
@@ -3379,7 +3444,7 @@ textarea {
 }
 
   .imgBrasil img{
-  width: 120px;
+  width: 150px;
   height: auto;
 }
 
@@ -3407,7 +3472,7 @@ textarea {
 }
 
   .imgBrasil img{
-  width: 120px;
+  width: 150px;
   height: auto;
 }
 
