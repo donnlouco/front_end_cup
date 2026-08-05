@@ -187,7 +187,10 @@ async function carregarSedes() {
     try {
         const response = await fetch(`${API_URL}`, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer frontendteamscup-front-token-2026'
+            }
         });
 
         if (!response.ok) {
@@ -195,7 +198,10 @@ async function carregarSedes() {
         }
 
         const dados = await response.json();
-        const sedes = dados.sedes;
+
+        // TRATAMENTO DO RETORNO:
+        // Garante que pega 'dados.sedes' se existir ou o próprio 'dados' se for um Array direto
+        const sedes = Array.isArray(dados) ? dados : (dados.sedes || []);
 
         if (!sedes || sedes.length === 0) {
             console.warn('Nenhuma sede retornada da API');
@@ -205,59 +211,49 @@ async function carregarSedes() {
         const sedesFrag = document.createDocumentFragment();
 
         sedes.forEach(sede => {
+            // Ignora itens com dados genéricos/mocks tipo "string" se desejar
+            if (sede.nome_campus === 'string') return;
+
             let htmlDosTimes = '';
             
             if (sede.times && Array.isArray(sede.times)) {
                 sede.times.forEach(time => {
                     
                     // 1. Mapeia os integrantes APENAS como texto (Nome e Função)
-                    const htmlDosMembros = time.integrantes && Array.isArray(time.integrantes) &&  time.integrantes.length > 0
+                    const htmlDosMembros = time.integrantes && Array.isArray(time.integrantes) && time.integrantes.length > 0
                         ? time.integrantes.map(membro => {
         
-                            // Função interna para transformar "NOME EM MAIÚSCULO" ou "nome em minúsculo" em "Nome Formatado"
                             const formatarNome = (nomeCompleto) => {
                                 if (!nomeCompleto) return '';
-                                
-                                // Lista de conectores que geralmente devem ficar em minúsculo
                                 const excecoes = ['de', 'di', 'do', 'da', 'dos', 'das', 'e'];
-                                
                                 return nomeCompleto
-                                    .toLowerCase()                    // Transforma tudo em minúsculo primeiro
-                                    .split(' ')                       // Divide o nome por espaços
-                                    .filter(palavra => palavra !== '') // Remove espaços duplos perdidos
+                                    .toLowerCase()
+                                    .split(' ')
+                                    .filter(palavra => palavra !== '')
                                     .map((palavra, index) => {
-                                        // Se for um conector (e não for a primeira palavra), mantém minúsculo
-                                        if (excecoes.includes(palavra) && index > 0) {
-                                            return palavra;
-                                        }
-                                        // Caso contrário, capitaliza a primeira letra
+                                        if (excecoes.includes(palavra) && index > 0) return palavra;
                                         return palavra.charAt(0).toUpperCase() + palavra.slice(1);
                                     })
-                                    .join(' ');                       // Junta o nome novamente
+                                    .join(' ');
                             };
 
                             const formatarFuncao = (funcao) => {
                                 if (!funcao) return 'Membro';
                                 const f = funcao.trim().toLowerCase();
                                 if (f === 'líder' || f === 'lider') return 'Líder';
-                                if (f === 'membro') return 'Membro';
-                                if (f === 'integrante') return 'Membro'; // Padroniza (INTEGRANTE) para Membro se preferir, ou 'Integrante'
-                                return funcao; // Mantém o original caso seja algo diferente
+                                if (f === 'membro' || f === 'integrante') return 'Membro';
+                                return funcao;
                             };
-
-                            const nomeTratado = formatarNome(membro.nome);
-                            const funcaoTratada = formatarFuncao(membro.funcao);
 
                             return `
                                 <li>
-                                    <strong>${nomeTratado}</strong> 
-                                    <small>(${funcaoTratada})</small>
+                                    <strong>${formatarNome(membro.nome)}</strong> 
+                                    <small>(${formatarFuncao(membro.funcao)})</small>
                                 </li>
                             `;
                     }).join('')
                     : '<li>Nenhum integrante cadastrado</li>';
                     
-                    // 2. Monta o bloco do time APENAS com o título em texto, sem escudo/imagem
                     htmlDosTimes += `
                         <div class="team">
                             <h4>${time.nome}</h4>
@@ -269,20 +265,28 @@ async function carregarSedes() {
                 });
             }
 
-            // 3. Cria o Card principal da Sede (também sem imagem de fundo se preferir controlar via CSS)
+            // 2. Cria o Card principal da Sede (com imagem inclusa)
             const article = document.createElement('article');
             article.className = 'sedeBanner';
             article.setAttribute('role', 'listitem');
 
+            // Caso a API envie o link da imagem, aplicamos como fundo ou imagem de destaque
+            const imagemSede = sede.imagem_sede || '';
+
             article.innerHTML = `
                 <div class="sedeBannerBody">
-                    <h3 class="sedeBannerName">${sede.nome_campus}</h3>
+                    <h3 class="sedeBannerName">${sede.nome_campus || `${sede.instituicao} - Campus ${sede.campus}`}</h3>
                     <p class="sedeBannerInstitution"><i class="fa-solid fa-building"></i> ${sede.instituicao}</p>
                     <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.uf}</p>
                     <p class="sedeBannerCity">${sede.local || sede.cidade}</p>
                     <div class="sedeBannerTeamsCounter">
-                        <span class="teamsCount">${sede.quantidade_times} times</span>
+                        <span class="teamsCount">${sede.quantidade_times || (sede.times ? sede.times.length : 0)} times</span>
                     </div>
+                    ${sede.imagem_sede ? `
+                        <div class="sedeBannerThumb">
+                            <img src="${sede.imagem_sede}" alt="${sede.nome_campus}">
+                        </div>
+                    ` : ''}
                 </div>
                 <div class="sedeBannerTeams">
                     ${htmlDosTimes}
@@ -296,9 +300,9 @@ async function carregarSedes() {
         container.appendChild(sedesFrag);
 
         // Reinicializa as interações da página
-        initTeamsToggle();
-        initSedesVerMais();
-        initBusca();
+        if (typeof initTeamsToggle === 'function') initTeamsToggle();
+        if (typeof initSedesVerMais === 'function') initSedesVerMais();
+        if (typeof initBusca === 'function') initBusca();
 
     } catch (error) {
         console.error('Erro ao carregar as sedes da API:', error);

@@ -25,7 +25,7 @@
                 ✗ Erro ao cadastrar. Verifique os dados e tente novamente.
             </div>
 
-            <form id="cadastroForm" method="POST" action="https://formspree.io/f/seu_id">
+            <form id="cadastroForm">
                 <div class="formSection">
                     <h3><i class="fa-solid fa-university"></i> Dados da Instituição</h3>
 
@@ -147,8 +147,8 @@
                             <input type="tel" id="responsavel_cel" name="responsavel_cel" placeholder="(11) 99999-9999" required>
                         </div>
                         <div class="formGroup">
-                            <label for="responsavel_telefone" class="requiredLabel">Telefone</label>
-                            <input type="tel" id="responsavel_telefone" name="responsavel_telefone" placeholder="(11) 99999-9999" required>
+                            <label for="responsavel_telefone">Telefone</label>
+                            <input type="tel" id="responsavel_telefone" name="responsavel_telefone" placeholder="(11) 99999-9999" >
                         </div>
                     </div>
                     <div class="formGroup">
@@ -247,8 +247,8 @@
 
             // Validar Telefone
             const telefone = telefoneInput.value.replace(/\D/g, '');
-            if (telefone.length < 10) {
-                showError('Telefone inválido. Digite um telefone válido.');
+            if (telefone.length > 0 && telefone.length < 10) {
+                showError('Telefone inválido. Digite um telefone válido ou deixe em branco.');
                 return;
             }
 
@@ -284,7 +284,8 @@
                     method: 'POST',
                     headers: {
                         'accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer frontendteamscup-front-token-2026'
                     },
                     body: JSON.stringify(dadosParaEnviar)
                 });

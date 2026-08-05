@@ -758,6 +758,23 @@ body{
   padding-bottom: 52px;
 }
 
+.sedeBannerThumb {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    top: 45px;
+    left: 120px;
+}
+
+.sedeBannerThumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ou 'cover', dependendo do seu design */
+    
+}
+
 .sedesBannerWrap.is-expanded {
   padding-bottom: 52px;
 }
@@ -1932,7 +1949,7 @@ body{
 
 /* ========== TRUNCAMENTO DE TEXTO ========== */
 .historyBlockTextContent {
-  max-height: 300px;
+  max-height: 230px;
   overflow: hidden;
   transition: max-height 0.5s ease-out;
   position: relative;
@@ -1970,7 +1987,7 @@ body{
 
 @media (max-width: 1300px) {
   .historyBlockTextContent {
-    max-height: 180px;
+    max-height: 230px;
   }
 }
 
@@ -1993,7 +2010,7 @@ body{
   }
 
   .historyBlockTextContent {
-    max-height: 150px;
+    max-height: 230px;
   }
 }
 
@@ -2270,7 +2287,7 @@ body{
 .organizadorCard {
   background: rgba(27, 27, 27, 0.75);
   border-radius: 35px;
-  padding: 28px 24px;
+  padding: 22px 18px;
   border: 1px solid rgba(251, 190, 36, 0.486);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   text-align: center;
@@ -2283,12 +2300,11 @@ body{
 }
 
 .organizadorImageContainer {
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   margin: 0 auto 16px;
-  border-radius: 50%;
+  border-radius: 25%;
   overflow: hidden;
-  border: 1px solid rgba(251, 191, 36, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2482,9 +2498,17 @@ body{
 }
 
 .devRole {
-  margin: 0 16px 16px;
+  margin: 0 16px 5px;
   font-size: 12px;
   color: #fbbf24;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600
+}
+.devTopic {
+  margin: 0 16px 16px;
+  font-size: 10px;
+  color: white;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-weight: 600
