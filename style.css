@@ -764,8 +764,8 @@ body{
     height: 70px;
     border-radius: 8px;
     overflow: hidden;
-    top: 45px;
-    left: 120px;
+    top: 42px;
+    left: 150px;
 }
 
 .sedeBannerThumb img {
@@ -1255,6 +1255,10 @@ body{
   .sedeBanner:hover {
     transform: translateY(-2px);
   }
+
+  .sedeBannerThumb {
+    top: 38px;
+}
 
   .team {
     padding: 8px 10px;
