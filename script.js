@@ -1,3 +1,19 @@
+// ========== MUDAR LINK DE INSCRIÇÃO BASEADO NA DATA ==========
+function initBtnInscricao() {
+    const btnInscrever = document.getElementById("btnInscrever");
+    
+    if (!btnInscrever) return;
+    
+    // Data limite: 31 de agosto de 2026
+    const dataLimite = new Date(2026, 7, 31);
+    const dataAtual = new Date();
+    
+    // Se a data atual for depois de 31 de agosto, mudar para cadastro de times
+    if (dataAtual > dataLimite) {
+        btnInscrever.href = "cadastroTimes.html";
+    }
+}
+
 
 // ========== HEADER SCROLL ==========
 window.addEventListener("scroll", () => {
@@ -271,18 +287,20 @@ async function carregarSedes() {
             article.setAttribute('role', 'listitem');
 
             // Caso a API envie o link da imagem, aplicamos como fundo ou imagem de destaque
-            const imagemSede = sede.imagem_sede || '';
+            const imagemValida = sede.imagem_sede && 
+                     sede.imagem_sede !== 'string' && 
+                     (sede.imagem_sede.startsWith('http://') || sede.imagem_sede.startsWith('https://'));
 
             article.innerHTML = `
                 <div class="sedeBannerBody">
-                    <h3 class="sedeBannerName">${sede.nome_campus || `${sede.instituicao} - Campus ${sede.campus}`}</h3>
-                    <p class="sedeBannerInstitution"><i class="fa-solid fa-building"></i> ${sede.instituicao}</p>
+                    <h3 class="sedeBannerName">${sede.nome_campus.toUpperCase() || `${sede.instituicao}. - Campus ${sede.campus}`}</h3>
+                    <p class="sedeBannerInstitution"><i class="fa-solid fa-building"></i> ${sede.instituicao.toUpperCase()}</p>
                     <p class="sedeBannerMeta"><i class="fa-solid fa-location-dot"></i> ${sede.uf}</p>
-                    <p class="sedeBannerCity">${sede.local || sede.cidade}</p>
+                    <p class="sedeBannerCity">${sede.local.toUpperCase() || sede.cidade.toUpperCase()}</p>
                     <div class="sedeBannerTeamsCounter">
                         <span class="teamsCount">${sede.quantidade_times || (sede.times ? sede.times.length : 0)} times</span>
                     </div>
-                    ${sede.imagem_sede ? `
+                    ${imagemValida ? `
                         <div class="sedeBannerThumb">
                             <img src="${sede.imagem_sede}" alt="${sede.nome_campus}">
                         </div>
@@ -449,6 +467,61 @@ function initDevsVerMais() {
 
 // Não esqueça de chamar a função para ela rodar!
 initDevsVerMais();
+
+// ========== FUNCIONALIDADE VER MAIS PARA APOIADORES ==========
+function initApoiadoresVerMais() {
+    const apoiadoresGrid = document.getElementById("apoiadoresGrid");
+    const btnApoiadores = document.getElementById("btnApoiadores");
+
+    if (!apoiadoresGrid || !btnApoiadores) return;
+
+    const cardsApoiadores = document.querySelectorAll(".cardApoiador");
+    
+    function calcularLimitePorLinhas() {
+        // Detectar número de colunas baseado no width do grid
+        const gridStyle = window.getComputedStyle(apoiadoresGrid);
+        const gridTemplateColumns = gridStyle.gridTemplateColumns;
+        const colunas = gridTemplateColumns.split(' ').length;
+        
+        // 2 linhas = colunas * 2
+        return colunas * 2;
+    }
+
+    function verificarEMostrarBotao() {
+        const limite = calcularLimitePorLinhas();
+        
+        // Mostrar/esconder logos além do limite
+        cardsApoiadores.forEach((card, index) => {
+            if (!apoiadoresGrid.classList.contains("is-expanded")) {
+                card.style.display = index < limite ? "" : "none";
+            } else {
+                card.style.display = "";
+            }
+        });
+
+        // Mostrar/esconder botão
+        if (cardsApoiadores.length > limite) {
+            btnApoiadores.hidden = false;
+        } else {
+            btnApoiadores.hidden = true;
+        }
+    }
+
+    btnApoiadores.addEventListener('click', () => {
+        const expanded = apoiadoresGrid.classList.toggle("is-expanded");
+        btnApoiadores.setAttribute("aria-expanded", String(expanded));
+        btnApoiadores.textContent = expanded ? "ver menos" : "ver mais";
+        verificarEMostrarBotao();
+    });
+
+    // Verificar na primeira carga
+    verificarEMostrarBotao();
+
+    // Verificar quando a janela redimensiona
+    window.addEventListener('resize', verificarEMostrarBotao);
+}
+
+initApoiadoresVerMais();
 
 function initOrgaVerMais(){
     const orgGrid = document.querySelector(".organizadoresGrid");
