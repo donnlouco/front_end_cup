@@ -2706,6 +2706,10 @@ body{
   margin-bottom: 12px;
 }
 
+.footerSection p{
+  text-decoration: none;
+}
+
 .footerLinks a {
   color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
