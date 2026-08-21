@@ -111,9 +111,12 @@ body{
 .leftHeaderLogo{
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: 8%;
   padding-right: 8px;
   padding-left: 15px;
+  position: relative;
+  z-index: 20;
 }
 
 .leftHeader{
@@ -125,6 +128,10 @@ body{
 .leftHeaderLogo img{
   width: 45px;
   height: auto;
+  display: block;
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.18)) contrast(1.08) saturate(1.1);
+  mix-blend-mode: normal;
 }
 
 .rightHeader{
@@ -133,6 +140,8 @@ body{
  padding-right: 15px;
   align-items: center;
  justify-content: end;
+ position: relative;
+ z-index: 20;
 }
 
 @media(max-width:500px){
@@ -147,10 +156,14 @@ body{
 
   .leftHeaderLogo{
     padding-left: 10px;
+    position: relative;
+    z-index: 30;
   }
 
   .leftHeaderLogo img{
     width: 45px;
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.20));
   }
 }
 
@@ -243,6 +256,11 @@ body{
     top: 24px;
     left: 38%;
     transform: translate(-38%, 0);
+    z-index: 10;
+  }
+
+  .leftHeaderLogo {
+    z-index: 30;
   }
 }
 
@@ -2789,11 +2807,19 @@ body{
 .imgIf img{
   width: 220px;
   height: auto;
+  display: block;
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.12)) contrast(1.08);
+  mix-blend-mode: normal;
 }
 
 .imgBrasil img{
   width: 200px;
   height: auto;
+  display: block;
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.12)) contrast(1.08);
+  mix-blend-mode: normal;
 }
 
 
