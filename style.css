@@ -778,12 +778,12 @@ body{
 
 .sedeBannerThumb {
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 67px;
+    height: 67px;
     border-radius: 8px;
     overflow: hidden;
     top: 42px;
-    left: 150px;
+    left: 180px;
 }
 
 .sedeBannerThumb img {
