@@ -4102,8 +4102,8 @@ textarea {
   flex-direction: column;
   align-items: center;
   background-size: cover;
-  border-top:solid 2px #3b3b3b4f;
-  border-bottom: solid 1px #fbbf24;;
+  border-top:solid 1px #fbbf24;
+  border-bottom: solid 1px #fbbf24;
   background-position: center;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
   padding: 60px 20px;
