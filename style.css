@@ -1696,10 +1696,11 @@ body{
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   border: none;
   transition: transform 0.2s ease, background-color 0.2s ease;
+  
 }
 
-.prevBtnCarousel { left: 20px; }
-.nextBtnCarousel { right: 20px; }
+.prevBtnCarousel { left: 130px; }
+.nextBtnCarousel { right: 130px; }
 
 .prevBtnCarousel:hover, .nextBtnCarousel:hover{
   transform: translateY(-50%) scale(1.12);
@@ -1819,6 +1820,16 @@ body{
   .cardCarousel.is-next2 {
     transform: translateX(108%) scale(0.58) rotateY(-30deg);
   }
+}
+
+@media(max-width:1930px){
+  .prevBtnCarousel { left: 80px; }
+  .nextBtnCarousel { right: 80px; }
+}
+
+@media(max-width:1500px){
+  .prevBtnCarousel { left: 30px; }
+  .nextBtnCarousel { right: 30px; }
 }
 
 @media(max-width: 900px){
